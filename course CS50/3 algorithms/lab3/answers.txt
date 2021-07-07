@@ -1,0 +1,38 @@
+CS50 Lab 2: Sort
+Analyze three sorting programs to determine which algorithms they use.
+
+sort1 uses: Bubble sort
+How do you know?: O(n²) Ω(n)
+sorted 5k:       0.011    0.012    0.011 
+sorted 10k:      0.079    0.017    0.018 
+sorted 50k:      2.659    2.781    3.677 
+reversed 5k:     0.066    0.108    0.085 
+reversed 10k:    0.374    0.373    0.392 
+reversed 50k:    11.500   13.671   11.749 
+random 5k:       0.062    0.107    0.117 
+random 10k:      0.460    0.473    0.446 
+random 50k:      16.466   15.532   16.898 
+
+sort2 uses: Merge sort
+How do you know?: θ(n log n)
+sorted 5k:       0.016    0.011    0.010 
+sorted 10k:      0.079    0.017    0.019 
+sorted 50k:      4.251    2.909    1.924 
+reversed 5k:     0.010    0.012    0.012 
+reversed 10k:    0.020    0.022    0.019 
+reversed 50k:    2.266    3.991    2.535 
+random 5k:       0.011    0.015    0.014 
+random 10k:      0.022    0.017    0.019 
+random 50k:      2.267    2.486    1.850 
+
+sort3 uses: Selection sort
+How do you know?: θ(n²)
+sorted 5k:       0.034    0.033    0.035 
+sorted 10k:      0.237    0.185    0.209 
+sorted 50k:      7.629    7.663    8.001 
+reversed 5k:     0.034    0.035    0.035 
+reversed 10k:    0.295    0.283    0.239 
+reversed 50k:    9.077    6.985    7.973 
+random 5k:       0.036    0.033    0.035 
+random 10k:      0.209    0.219    0.239 
+random 50k:      7.839    7.178    7.167 

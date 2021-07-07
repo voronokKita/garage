@@ -1,0 +1,3 @@
+CS50 PSet 0: Scratch
+	Pac-Man Lite:
+	https://scratch.mit.edu/projects/478483603/

@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content='width=divice-width, height=device-height, initial-scale=1.0'>
+    <link rel='shortcut icon' type='image/ico' href="{% static 'base/favicon.ico' %}">
+    <link rel='stylesheet' href="{% static 'wiki/styles.css' %}">
+  </head>
+
+  <body>
+
+    <nav>
+      <section class='nav' id='title'>
+        <h1>Wiki</h1>
+      </section>
+
+      <form action='{% url "wiki:index" %}' method='POST' class='nav'>
+        {% csrf_token %}
+        {{ form }}
+
+        <a href="{% url 'wiki:index' %}" class='global-nav' id='home'>
+          <div>HOME</div>
+        </a>
+        <button type='submit' class='global-nav' id='search'>Search</button>
+      </form>   
+
+      <section class='nav' id='global-nav'>
+        <a href="{% url 'hello:index' %}" class='global-nav'>
+          <div>hello</div>
+        </a>
+        <a href="{% url 'newyear:index' %}" class='global-nav'>
+          <div>newyear</div>
+        </a>
+        <a href="{% url 'tasks:index' %}" class='global-nav'>
+          <div>tasks</div>
+        </a>
+        <a href="{% url 'polls:index' %}" class='global-nav'>
+          <div>polls</div>
+        </a>
+      </section class='nav'>
+
+      <section class='nav'>
+        <a href="{% url 'wiki:write' 'new' %}">
+          <button class='options'>Create New Page</button>
+        </a>
+      </section>
+
+      <section class='nav'>
+        <a href="{% url 'wiki:entry' 'random' %}">
+          <button class='options'>Random Page</button>
+        </a>
+      </section>
+    </nav>
+
+    <main>
+      {% block body %}
+      {% endblock %}
+    </main>
+
+  </body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+  <head>
+    <title>Advanced Search</title>
+    <meta name="viewport" content='width=divice-width, initial-scale=1.0'>
+    <link rel='stylesheet' href="styles.css">
+    <link rel='shortcut icon' type='image/png' href="img/favicon.ico"/>
+  </head>
+
+  <body>
+
+    <nav>
+      <a href="index.html">Search</a>
+      <a href="images.html">Images</a>      
+      <figure>
+        <img src="img/ceilingcat.png" alt="ceiling cat">
+      </figure>
+    </nav>
+
+    <header>
+      <img src="img/googleadvancedlogo.png" alt="Google Advanced Logo" id='advanced_logo'>
+      <h1 id='advanced_heading'>Advanced Search</h1>
+    </header>
+    
+    <main id='advanced_main'>
+      <form action="https://google.com/search" method='GET'>
+        <p id='adv_p'>Find pages with...</p>
+        <fieldset>
+          <ul>
+            <li>
+              <label for='all' class='adv_form_label'>all these words:</label>
+              <input type='text' name="as_q" id='all' class='adv_form_field'>
+            </li>
+            <li>
+              <label for='exact' class='adv_form_label'>this exact word or phrase:</label>
+              <input type='text' name="as_epq" id='exact' class='adv_form_field'>
+            </li>
+            <li>
+              <label for='any' class='adv_form_label'>any of these words:</label>  
+              <input type='text' name="as_oq" id='any' class='adv_form_field'>
+            </li>
+            <li>
+              <label for='none' class='adv_form_label'>none of these words:</label>
+              <input type='text' name="as_eq" id='none' class='adv_form_field'>
+            </li>
+          </ul>
+          <button type='submit' id='adv_search_button'>Advanced Search</button>
+        </fieldset>
+      </form>
+    </main>
+
+  </body>
+
+</html>

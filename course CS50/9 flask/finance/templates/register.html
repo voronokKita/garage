@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <!-- Input from user -->
+    <form action='/register' method='POST'>
+        <div class='form-group'>
+            <input class='form-control' name='username' placeholder='Сhoose Username' type='text' autocomplete='off' autofocus>
+        </div>
+        <div class='form-group'>
+            <input class='form-control' name='password' placeholder='Сhoose Password' type='password' autocomplete='off'>
+        </div>
+        <div class='form-group'>
+            <input class='form-control' name='confirmation' placeholder='Password (again)' type='password' autocomplete='off'>
+        </div>
+        <button class='btn btn-primary' type='submit'>Register</button>
+    </form>
+    <p><br>Password must be at least 6 characters, upper and lower case (or numbers).
+    <br>It's dangerous to go alone! Take this:</p>
+    <img src='https://imgs.xkcd.com/comics/password_strength.png' alt='password_strength.png from xkcd.com'>
+{% endblock %}

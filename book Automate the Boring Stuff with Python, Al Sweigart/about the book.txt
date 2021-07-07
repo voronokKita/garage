@@ -1,0 +1,4 @@
+I am very pleased that I came across this book!
+It helped me get into the main thing that Python has — a huge number of modules for different tasks. Every time I want to solve a problem, I should think — probably there is already a module for this purposess? By leaning on the shoulders of others, I can focus on my goal.
+Very interesting examples and exercises that can be useful in daily tasks.
+I recommend this book to everyone.

@@ -1,0 +1,7 @@
+{% extends "wiki/layout.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    {{ html_text|safe }}
+{% endblock %}

@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html, body {
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+}
+body * {
+    box-sizing: border-box;
+    font-family: 'Sawarabi Gothic', 'Open Sans', Sans-serif;
+}
+
+/* division */
+body {
+    display: flex;
+}
+nav, main {
+    display: inline-block;
+}
+nav {
+    width: 15vw;
+    min-width: 90px;
+    height: 100vh;
+}
+main {
+    width: 85vw;
+    height: 100vh;
+    border-left: 1px solid darkgreen;
+}
+
+/* nav */
+nav * {
+    font-size: 16px;
+    font-weight: normal;
+    text-decoration: none;
+}
+nav {
+    background-color: mediumseagreen;
+}
+.nav {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+section#title {
+    margin: 0 0 0 0;
+    padding: 4px 0 10px 10px;
+    background-color: darkgreen;
+}
+section#title > h1 {
+    font-size: 38px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: white;
+}
+form.nav {
+    display: inline-block;
+}
+form.nav > input {
+    padding: 1px;
+    width: 98%;
+    padding-left: 5px;
+    border: 1px solid green;
+    color: darkslategray;
+}
+input:hover, input:focus {
+    outline: 1px solid lawngreen;
+}
+section#global-nav {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: auto;
+    text-align: left;
+}
+a.global-nav div, button.global-nav {
+    display: inline-block;
+    width: 65px;
+    padding: 1px 5px;
+    margin: 4px 2px;
+    background-color: forestgreen;
+    border: 1px solid mediumseagreen;
+    border-radius: 10%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+a.global-nav {
+    display: inline;       
+}
+a.global-nav div:hover {
+    background-color: rgb(32, 172, 32);
+}
+a#home div {
+    background-color: darkgreen;
+}
+a#home div:hover {
+    background-color: rgb(32, 172, 32);
+}
+button#search {
+    margin-right: 5px;
+    background-color: mediumblue;
+    border: 1px solid mediumblue;
+}
+button#search:hover {
+    background-color: rgb(10, 96, 226);
+}
+.options {
+    display: inline;
+    padding: 4px;
+    margin-top: 6px;
+    color: grey;
+    border: 1px solid mediumseagreen;
+    background-color: whitesmoke;
+}
+.options:hover {
+    color:limegreen;
+    border: 1px solid limegreen;
+}
+
+/* main */
+main {
+    padding: 20px;
+}
+section.main {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+a {
+    color: indigo;
+}
+a:hover {
+    color: hotpink;
+}
+ul {
+    list-style: square;
+    line-height: 30px;
+}
+ul, or {
+    margin-left: 20px;
+}
+sub.edit > a {
+    text-decoration: none;
+}
+sub.edit {
+    font-size: 10px;
+}
+
+/* writer */
+.editor {
+    padding-top: 40px;
+    padding-left: 50px;
+    
+}
+.editor form, input, label, button {
+    display: block;
+}
+.editor label {
+    color: brown;
+}
+input#id_title {
+    padding: 2px;
+    width: 10vw;
+    min-width: 100px;
+    border: 1px solid orangered;
+}
+button#save {
+    margin-top: 10px;
+    width: 60px;
+    color: brown;
+}
+.editor p {
+    margin-top: 8px;
+}

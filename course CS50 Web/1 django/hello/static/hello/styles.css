@@ -1,0 +1,42 @@
+header {
+    background-color: mediumseagreen;
+    border-bottom: 20px solid green;
+}
+header > h1 {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 34px 0 20px 42px;
+}
+main {
+    padding-top: 45px;
+    padding-left: 16%;
+}
+main > h3 {
+    font-size: 22px;
+    margin-bottom: 32px;
+}
+main > ul {
+    list-style-type: none;
+}
+main > ul li {
+    padding-left: 40px;
+    background-image: url("img/heart.ico");
+    background-position: 0 8px;
+    background-size: 16px;
+    background-repeat: no-repeat;
+}
+a {
+    color: mediumseagreen;
+    font-size: 20px;
+    font-weight: bold;
+}
+a:hover {
+    color: green;
+}
+figure {
+    margin-top: 30px;
+}
+img {
+    width: 190px;
+}

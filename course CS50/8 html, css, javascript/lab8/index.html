@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<!--
+CS50 Lab 8: Trivia
+Write a webpage that lets users answer trivia questions.
+-->
+
+<html lang='en'>
+
+<head>
+
+<link rel='stylesheet' href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap">
+<link rel='stylesheet' href="styles.css">
+
+<title>Trivia!</title>
+
+<script>
+    // Code to check answers to questions:
+    const first_correct_answer = 3;
+    const second_correct_answer = /CS50/i;
+    const defaultButtonColor = '#d9edff';
+    var tmpButton;
+
+    function question1(answerId, newColor)
+    {
+        // Remember answer and/or clean previous
+        if (tmpButton == undefined) {  // Logic around chaos and emptiness. Just like my life.
+            tmpButton = answerId;
+        }
+        else {
+            document.getElementById(tmpButton).style.backgroundColor = defaultButtonColor;
+            tmpButton = answerId;
+        }
+
+        // Change color of button
+        document.getElementById(answerId).style.backgroundColor = newColor;
+
+        // Print result
+        var output = (answerId == first_correct_answer) ? "Correct!" : "Incorrect";
+        document.getElementById('result1').innerHTML = output;
+    }
+
+    function question2()
+    {
+        // Get form value
+        var line = document.getElementById('answer2form').value;
+
+        // Found pattern
+        var result = line.search(second_correct_answer);
+
+        // Print result
+        var output = (result >= 0) ? "Correct!" : "Incorrect";
+        document.getElementById('result2').innerHTML = output;
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class='jumbotron'>
+    <h1>Trivia!</h1>
+</div>
+
+<div class='container'>
+
+    <div class='section'>
+        <h2>Part 1: Multiple Choice </h2>
+        <hr>
+
+        <!--
+        Add multiple-choice trivia question of your choosing with HTML.
+        Should use an h3 heading for the text of your question.
+        Should have one button for each of the possible answer choices.
+        There should be at least three answer choices, of which exactly one should be correct.
+
+        Using JavaScript, add logic so that the buttons change colors when a user clicks on them.
+        If a user clicks on a button with an incorrect answer,
+            the button should turn red and text should appear beneath the question that says “Incorrect”.
+        If a user clicks on a button with the correct answer,
+            the button should turn green and text should appear beneath the question that says “Correct!”.
+        -->
+
+        <h3>What's the most boring programming language?</h3>
+        <button type='button' id=0 onclick='question1(0, "red")'>С</button>
+        <button type='button' id=1 onclick='question1(1, "red")'>Python</button>
+        <button type='button' id=2 onclick='question1(2, "red")'>SQLite</button>
+        <button type='button' id=3 onclick='question1(3, "green")'>JavaScript</button>
+
+        <p id='result1'></p>
+
+    </div>
+
+    <div class='section'>
+        <h2>Part 2: Free Response</h2>
+        <hr>
+
+        <!--
+        Add text-based free response question of your choosing with HTML.
+        Should use an h3 heading for the text of your question.
+        Should use an input field to let the user type a response.
+        Should use a button to let the user confirm their answer.
+
+        Using JavaScript, add logic so that the text field changes color when a user confirms their answer.
+        If the user types an incorrect answer and presses the confirmation button,
+            the text field should turn red and text should appear beneath the question that says “Incorrect”.
+        If the user types the correct answer and presses the confirmation button,
+            the input field should turn green and text should appear beneath the question that says “Correct!”.
+        -->
+
+        <h3>This is...</h3>
+
+        <form onsubmit='question2(); return false;'>
+            <input type='text' id='answer2form' autocomplete='off' placeholder="...what?">
+            <input type='submit' value="Check Answer">
+        </form>
+
+        <p id='result2'></p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <!-- Output to user -->
+    {% if answer %}
+        <p>{{ answer }}</p>
+    {% endif %}
+
+    <!-- Get input from user -->
+    <form action='/sell' method='post'>
+        <select name='symbol'>
+            <option disabled selected value="">Symbol</option>
+            {% for asset in holdings %}
+                <option value='{{ asset }}'>{{ asset }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <div class='form-group'>
+            <input class='form-control' name='shares' placeholder='Number of shares' type='text' autocomplete='off' autofocus>
+        </div>
+        <button class='btn btn-primary' type='submit'>Sell</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "wiki/layout.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block body %}
+  <header>
+    <h1>Search results:</h1>
+  </header>
+
+  <section class='main'>
+    {% if entries %}
+      <ul>
+        {% for entry in entries %}
+          <li>
+            <a href="{% url 'wiki:entry' entry %}">{{ entry }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No matches.</p>
+    {% endif %}
+  </section>
+{% endblock %}

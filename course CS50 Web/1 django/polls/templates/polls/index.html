@@ -1,0 +1,23 @@
+{% extends "base/layout.html" %}
+{% load static %}
+
+{% block title %} Polls {% endblock %}
+{% block stylesheet %}
+  <link rel='stylesheet' type='text/css' href="{% static 'polls/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+  <main>
+    {% if latest_question_list %}
+      <ul>
+        {% for question in latest_question_list %}
+          <li>
+            <a href="{% url 'polls:detail' question.id %}" class='list'>{{ question.question_text }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No polls are available.</p>
+    {% endif %}
+  </main>
+{% endblock %}

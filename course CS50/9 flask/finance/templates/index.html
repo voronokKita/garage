@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    C$50 Finance
+{% endblock %}
+
+{% block main %}
+    <table>
+
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- namedtuple('Holding', 'symbol name shares price total') -->
+            {% for entrie in user_holdings %}
+                <tr>
+                  <td>{{ entrie.symbol }}</td>
+                  <td>{{ entrie.name }}</td>
+                  <td>{{ entrie.shares }}</td>
+                  <td>{{ entrie.price | usd }}</td>
+                  <td>{{ entrie.total | usd }}</td>
+                </tr>
+            {% endfor %}
+            {% if cash %}
+                <tr>
+                  <td>CASH</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>{{ cash | usd }}</td>
+                </tr>
+            {% endif %}
+            {% if wealth %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><b>{{ wealth | usd }}</b></td>
+                </tr>
+            {% endif %}
+        </tbody>
+
+    </table>
+{% endblock %}

@@ -1,0 +1,64 @@
+nav {
+    text-align: center;
+}
+main {
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 280px;
+    padding: 10px;
+    background-color: cornflowerblue;
+    border: 3px solid blue;
+}
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: paleturquoise;
+    margin-bottom: 10px;
+}
+li {
+    font-size: 20px;
+    color: white;
+    margin: 0 0 10px 10px;
+}
+ul {
+    list-style: none;
+}
+label {
+    display: block;
+    padding: 10px 0;
+    font-size: 18px;
+    color: white;
+}
+input {
+    width: 250px;
+    padding-left: 10px;
+    color: darkslategray;
+    border: 1px solid white;
+}
+input[name="priority"] {
+    width: 90px;
+}
+input:focus {
+    outline: 2px solid orange;
+}
+a.form {
+    position: relative;
+    left: 180px;
+    color: aquamarine;
+}
+a.form:hover {
+    color: blue;
+}
+button {
+    padding: 3px;
+    margin: 8px 0;
+    border: 1px solid darkslategray;
+    border-radius: 10%;
+    color: white;
+    background-color: mediumaquamarine;
+}
+button:hover {
+    border: 1px solid blue;
+    background-color: seagreen;
+}

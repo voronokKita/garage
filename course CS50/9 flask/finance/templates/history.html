@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table>
+
+        <thead>
+            <tr>
+                <th>Share</th>
+                <th>Number</th>
+                <th>Price</th>
+                <th>Transacted</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- namedtuple('Holding', 'symbol name shares price total') -->
+            {% for row in user_history %}
+                <tr>
+                  <td>{{ row['share'] }}</td>
+                  <td>{{ row['number'] }}</td>
+                  <td>{{ row['price'] | usd }}</td>
+                  <td>{{ row['date'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

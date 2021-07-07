@@ -1,0 +1,45 @@
+nav {
+    text-align: center;
+}
+ul {
+    list-style: none;
+}
+main {
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 280px;
+    padding: 10px;
+    border: 5px solid darkgreen;
+    background-color: mediumseagreen;
+    color: white;
+}
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+}
+li {
+    margin: 8px 0;
+}
+a.list {
+    color: aliceblue;
+}
+a.again {
+    color: midnightblue;
+    text-decoration: none;
+}
+input {
+    margin: 8px 0;
+}
+button {
+    padding: 3px;
+    margin: 8px 0;
+    border: 1px solid darkslategray;
+    border-radius: 10%;
+    color: white;
+    background-color: mediumaquamarine;
+}
+button:hover {
+    border: 1px solid blue;
+    background-color: seagreen;
+}

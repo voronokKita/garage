@@ -1,0 +1,14 @@
+{% extends "wiki/layout.html" %}
+
+{% block title %}{{ page_name }}{% endblock %}
+
+{% block body %}
+  <section class='editor'>
+    <form action='{% url "wiki:write" %}' method='POST'>
+      {% csrf_token %}
+      {{ editor_form }}
+      <button type='submit' id='save'>Save</button>
+    </form>
+    <p>{{ message }}</p>
+  </section>
+{% endblock %}

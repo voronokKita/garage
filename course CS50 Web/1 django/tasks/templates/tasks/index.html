@@ -1,0 +1,21 @@
+{% extends "base/layout.html" %}
+{% load static %}
+
+{% block title %} Taks {% endblock %}
+{% block stylesheet %}
+  <link rel='stylesheet' type='text/css' href="{% static 'tasks/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+  <main>
+    <h3>Tasks:</h3>
+    <ul>
+      {% for task in tasks %}
+        <li>{{ task }}</li>
+      {% empty %}
+        <li>No tasks.</li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'tasks:add' %}" class='form'>Add task</a>
+  </main>
+{% endblock %}

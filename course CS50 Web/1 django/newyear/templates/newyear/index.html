@@ -1,0 +1,21 @@
+{% extends "base/layout.html" %}
+{% load static %}
+
+{% block title %} Is it New Year's? {% endblock %}
+{% block stylesheet %}
+  <link rel='stylesheet' type='text/css' href="{% static 'newyear/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+  <header>
+    <h1>New year is today?</h1>
+  </header>
+
+  <main>
+    {% if newyear %}
+      <h1 id='yes'>YES</h1>
+    {% else %}
+      <h1 id='no'>NO</h1>
+    {% endif %}
+  </main>
+{% endblock %}

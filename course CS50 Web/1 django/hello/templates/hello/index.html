@@ -1,0 +1,39 @@
+{% extends "base/layout.html" %}
+{% load static %}
+
+{% block title %} Hello! {% endblock %}
+{% block stylesheet %}
+  <link rel='stylesheet' type='text/css' href="{% static 'hello/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+{% block nav %}{% endblock %}
+
+  <header>
+    <h1>Hello, {{ name }}!</h1>
+  </header>
+
+  <main>
+    <h3>List of applications:</h3>
+    <ul>
+      <li>
+        <a href="{% url 'hello:index' %}">hello</a>
+      </li>
+      <li>
+        <a href="{% url 'newyear:index' %}">newyear</a>
+      </li>
+      <li>
+        <a href="{% url 'tasks:index' %}">tasks</a>
+      </li>
+      <li>
+        <a href="{% url 'polls:index' %}">polls</a>
+      </li>
+      <li>
+        <a href="{% url 'wiki:index' %}">wiki</a>
+      </li>
+    </ul> 
+    <figure>
+      <img src="{% static 'hello/img/logo.jpg' %}" alt="Logo">
+    </figure>  
+  </main>
+{% endblock %}

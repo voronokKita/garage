@@ -1,0 +1,19 @@
+body {
+  text-align: center;
+}
+header h1 {
+  font-size: 45px;
+}
+main {
+  margin-top: 10%;
+}
+main h1 {
+  font-size: 100px;
+  font-weight: bolder;
+}
+#no {
+  color: brown;
+}
+#yes {
+  color: mediumseagreen;
+}

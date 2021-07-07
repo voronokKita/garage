@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang='en'>
+
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content='width=divice-width, initial-scale=1.0'>
+    <link rel='shortcut icon' type='image/ico' href="{% static 'base/favicon.ico' %}">
+    <link rel='stylesheet' type='text/css' href="{% static 'base/global.css' %}">
+    {% block stylesheet %}{% endblock %}
+  </head>
+
+  <body>
+    {% block nav %}
+      <nav>
+        <a href="{% url 'hello:index' %}" class='nav'>
+          <div>hello</div>
+        </a>
+        <a href="{% url 'newyear:index' %}" class='nav'>
+          <div>newyear</div>
+        </a>
+        <a href="{% url 'tasks:index' %}" class='nav'>
+          <div>tasks</div>
+        </a>
+        <a href="{% url 'polls:index' %}" class='nav'>
+          <div>polls</div>
+        </a>
+        <a href="{% url 'wiki:index' %}" class='nav'>
+          <div>wiki</div>
+        </a>
+      </nav>
+    {% endblock %}
+    
+    {% block body %}
+    {% endblock %}
+  </body>
+  
+</html>

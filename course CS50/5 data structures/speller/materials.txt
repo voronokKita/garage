@@ -1,0 +1,1 @@
+wget http://cdn.cs50.net/2021/spring/psets/5/speller/speller.zip
