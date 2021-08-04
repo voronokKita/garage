@@ -1,13 +1,14 @@
 #!/path/to/project/venv/bin/python
 """
-VERSION 1
+VERSION 1.5
 Request weather forecast via api;
 processes and outputs to the terminal, or sends to email.
 
 Alerts:
-~16:00~~:/it is very hot
-~17:00~~:/it is very hot
-tomorrow:/it is very hot
+~16:00~~: very hot
+~17:00~~: very hot
+tomorrow: very hot
+
 Weather Forecast:
 #TIME     TMP/FL   CLDS:PoP   WIND <      SPEED      <<   GUST    PRESSURE        UVI        AIR QUALITY
 *16:00  = 34°/33°  094%:000%   ENE <   l-breeze 2m/s <<   6m/s    norm 746mmHg    green 2    green air 47
@@ -15,10 +16,9 @@ Weather Forecast:
 tomorrow= 34°/33°  055%:000%   ESE <   l-breeze 2m/s <<   5m/s    norm 744mmHg   yellow 5    green air 47
 
 Designed to run from a bash script on schedule twice a day.
-Designed for the presence of api-key, gmail account and gmail password
-byte files, encrypted in base64, in the directory/data.
+Designed for the presence of api-key, gmail account and gmail password in 
+byte files, encrypted in base64, in the '/%user home%/.local/bin/data'.
 """
-import os
 import sys
 import time
 import json
@@ -29,11 +29,15 @@ import smtplib
 import requests
 import datetime
 
-# script data files
-sdata = str(pathlib.Path.home()) + "/.local/bin/data"
 
-LOGFILE = f"{sdata}/log.txt"
-LOGMAXBYTES = 1097152
+USAGE = """USAGE:
+python3 weather.py              for print mode or
+python3 weather.py -r/--mail    for remote mode"""
+
+script_data_files = str(pathlib.Path.home()) + "/.local/bin/data"
+
+LOG_FILE = f"{script_data_files}/log.txt"
+LOG_MAX_BYTES = 1000000
 
 # hours parameters
 UPDATE_TIME = 4
@@ -46,15 +50,15 @@ TOMORROW = 13
 LOCATION = '515012'
 URL_FORECASTS = "https://api.weatherbit.io/v2.0/forecast/hourly"
 URL_AIRQUALITY = "https://api.weatherbit.io/v2.0/forecast/airquality"
-FILE_FORECASTS = pathlib.Path(f"{sdata}/forecasts.json")
-FILE_AIRQUALITY = pathlib.Path(f"{sdata}/airquality.json")
-WEATHERBIT_APIKEY = f"{sdata}/apikey"
+FILE_FORECASTS = pathlib.Path(f"{script_data_files}/forecasts.json")
+FILE_AIRQUALITY = pathlib.Path(f"{script_data_files}/airquality.json")
+WEATHERBIT_APIKEY = f"{script_data_files}/apikey"
 
 # gmail parameters
 GMAIL_SMTP = 'smtp.gmail.com'
 GMAIL_SMTP_PORT = 587
-GMAIL_ACCOUNT = f"{sdata}/gmailaccount"
-GMAIL_APP_PASSWORD = f"{sdata}/gmailpassword"
+GMAIL_ACCOUNT = f"{script_data_files}/gmailaccount"
+GMAIL_APP_PASSWORD = f"{script_data_files}/gmailpassword"
 
 # weather categories (low, high) borders
 BEAUFORT_SCALE = {
@@ -66,7 +70,9 @@ AIR_QUALITY_EPA = {
     'green air': (0, 50), 'moderate': (51, 100), 'unhealthy': (101, 150),
     'EMISSIONS': (151, 200), 'VERY HIGH': (201, 300), '!HAZARDOUS!': (301, 999)
 }
-UV_INDEX = {'green': (0, 2), 'yellow': (3, 5), 'orange': (6, 7), 'RED': (8, 10), 'VIOLET': (11, 99)}
+UV_INDEX = {
+    'green': (0, 2), 'yellow': (3, 5), 'orange': (6, 7), 'RED': (8, 10), 'VIOLET': (11, 99)
+}
 ATMOSPHERIC_PRESSURE = {'normal': (740, 765)}
 
 # alerts boundaries
@@ -77,7 +83,7 @@ ALERT_ULTRAVIOLET = (7, 10)
 ALERT_AIR_QUALITY = (100, 200)
 
 # output text formats
-W_TIME = 9
+W_TIME = 10
 W_TEMP = 3
 W_CLD = 4
 W_WIND = 6
@@ -87,22 +93,32 @@ W_AP = 13
 W_UV = 9
 W_AQI = 15
 
+
 class JSONRequestError(Exception): pass
 class JSONLoadsError(Exception): pass
 class SendMailError(Exception): pass
 
+
 def main():
-    logfile = pathlib.Path(LOGFILE)
-    if logfile.exists() and logfile.stat().st_size < LOGMAXBYTES:
+    logfile = pathlib.Path(LOG_FILE)
+    if logfile.exists() and logfile.stat().st_size < LOG_MAX_BYTES:
         log_mode = 'a'
     else:
         log_mode = 'w'
-    logging.basicConfig(filename=LOGFILE, filemode=log_mode, level=logging.INFO,
+    logging.basicConfig(filename=LOG_FILE, filemode=log_mode, level=logging.INFO,
                         format="%(asctime)s — %(levelname)s: [[ %(message)s ]]")
     logging.info("Start")
 
-    # is the process running in the foreground?
-    mode = 'LOCAL' if sys.stdout.isatty() is True else 'REMOTE'
+    # determine operating mode
+    if len(sys.argv) == 1:
+        mode = 'LOCAL'
+    elif sys.argv[1] in ['-r', '--mail']:
+        mode = 'REMOTE'
+    else:
+        print(USAGE)
+        logging.info("printing usage help.")
+        sys.exit(1)
+        
     logging.info(f"operating mode {mode}")
 
     # json file check
@@ -115,7 +131,7 @@ def main():
             logging.info("new json data requested")
 
         else:
-            logging.info(f"last requests less than {UPDATE_TIME} hours")
+            logging.info(f"last request less than {UPDATE_TIME} hours")
             info = loads_weather_data()
             logging.info(f"OK loads")
 
@@ -181,6 +197,7 @@ def request_weather_data():
     info_weather = None
     info_airquality = None
     sources = ((URL_FORECASTS, FILE_FORECASTS), (URL_AIRQUALITY, FILE_AIRQUALITY))
+
     try:
         with open(WEATHERBIT_APIKEY, 'br') as apifile:
             apikey = base64.b64decode(apifile.read())
@@ -198,8 +215,10 @@ def request_weather_data():
                 info_weather = data['data']
             else:
                 info_airquality = data['data']
-    except OSError or Exception as error:
+
+    except (OSError, Exception) as error:
         raise JSONRequestError(error)
+
     return info_weather, info_airquality
 
 
@@ -217,8 +236,9 @@ def loads_weather_data():
                     info_weather = data['data']
                 else:
                     info_airquality = data['data']
-        except OSError or Exception as error:
+        except (OSError, Exception) as error:
             raise JSONLoadsError(error)
+
     return info_weather, info_airquality
 
 
@@ -226,11 +246,13 @@ def preprocess(info):
     """
     0) determine position in time
     1) determine target times
-    2) format time into keys; weatherbit date example: '2021-06-22T06:00:00'
+    2) format time into keys
     3) determine time intervals
+
     Two process options based on time of day:
     I MORNING -> EVENING
     II EVENING -> NIGHT
+
     :return: tuple(list, list)
     """
     current = datetime.datetime.now()
@@ -245,6 +267,7 @@ def preprocess(info):
     tomorrow = datetime.datetime(
         tomorrow.year, tomorrow.month, tomorrow.day, TOMORROW, 00, 00
     )
+    # weatherbit date example: '2021-06-22T06:00:00'
     key_time_now = str(now).replace(" ", "T")
     key_time_target = str(target).replace(" ", "T")
     key_time_tomorrow = str(tomorrow).replace(" ", "T")
@@ -254,6 +277,7 @@ def preprocess(info):
     interval_weather = None
     interval_airquality = None
     info_weather, info_airquality = info
+
     for data in (info_weather, info_airquality):
         now = 0
         target = 0
@@ -262,19 +286,21 @@ def preprocess(info):
             if hour['timestamp_local'] == key_time_now:
                 now = i
             elif hour['timestamp_local'] == key_time_target:
-                target = i + 1
+                target = i
             elif hour['timestamp_local'] == key_time_tomorrow:
                 tomorrow = i
+
         if data is info_weather:
             tomorrow_weather = data[tomorrow]
-            interval_weather = data[now:target]
+            interval_weather = data[now:target + 1]
         else:
             tomorrow_airquality = data[tomorrow]
-            interval_airquality = data[now:target]
+            interval_airquality = data[now:target + 1]
     else:
         info_weather = interval_weather + [tomorrow_weather]
         info_airquality = interval_airquality + [tomorrow_airquality]
 
+    # little paranoia
     if len(info_weather) < len(info_airquality):
         tail_wagon = len(info_airquality) - len(info_weather)
         info_weather += info_weather[0:tail_wagon]
@@ -288,20 +314,22 @@ def preprocess(info):
 def format_weather(info):
     """
     Weather Forecast
-    header
-    hour1
-    hour2
-    ...
-    tomorrow
+        header
+        hour1
+        hour2
+        ...
+        tomorrow
+
     :return: forecast text
     """
     info_weather, info_airquality = info
 
     forecast_text = "Weather Forecast:"
-    forecast_text += f"\n{'#TIME':<{W_TIME}} {'TMP':^{W_TEMP}}/{'FL':^{W_TEMP}}  " \
-                     f"{'CLDS':^{W_CLD}}:{'PoP':<{W_CLD}} " \
-                     f" {'WIND <':<{W_WIND}} {'SPEED':^{W_SPEED}} << {'GUST':>{W_GUST}}  " \
-                     f"{'PRESSURE':^{W_AP}}  {'UVI':^{W_UV}}   {'AIR QUALITY':^{W_AQI}}"
+    forecast_text += f"\n{'#TIME':<{W_TIME}} {'TMP':>{W_TEMP}}/{'FL':<{W_TEMP}}" \
+                     f"  {'CLDS':>{W_CLD}}:{'PoP':<{W_CLD}}" \
+                     f"  {'WIND <':>{W_WIND}} {'SPEED':^{W_SPEED}}  << {'GUST':>{W_GUST}}" \
+                     f"  {'PRESSURE':^{W_AP}} {'UVI':^{W_UV + 2}} {'AIR QUALITY':^{W_AQI + 1}}"
+
     i = 0
     tomorrow = len(info_weather) - 1
     for weather, airquality in zip(info_weather, info_airquality):
@@ -309,21 +337,25 @@ def format_weather(info):
             ttime = f"\n*{weather['timestamp_local'][11:-3]}  "
         else:
             ttime = f"\ntomorrow"
+
         temp = f"{round(weather['temp'])}°"
         app_temp = f"{round(weather['app_temp'])}°"
+
         clouds = f"{round(weather['clouds']):03}%"
         precipitation = f"{round(weather['pop']):03}%"
+
         wind_direction = f"{weather['wind_cdir']} <"  # TODO
         wind_speed = f"{deep_format(weather['wind_spd'], 'wind_speed')}m/s"
         wind_gust = f"{round(weather['wind_gust_spd'])}m/s"
-        pressure = deep_format(weather['pres'], 'pressure')
+
+        pressure = f"{deep_format(weather['pres'], 'pressure')}mmHg"
         ultraviolet = deep_format(weather['uv'], 'ultraviolet')
         air_quality_epa = deep_format(airquality['aqi'], 'aqi')
 
-        forecast_text += f"{ttime:<{W_TIME}}= {temp:^{W_TEMP}}/{app_temp:^{W_TEMP}}  " \
-                         f"{clouds:^{W_CLD}}:{precipitation:^{W_CLD}} " \
-                         f" {wind_direction:>{W_WIND}} {wind_speed:>{W_SPEED}} << {wind_gust:>{W_GUST}}  " \
-                         f" {pressure:>{W_AP}}  {ultraviolet:>{W_UV}} {air_quality_epa:>{W_AQI}} "
+        forecast_text += f"{ttime:<{W_TIME}}= {temp:>{W_TEMP}}/{app_temp:<{W_TEMP}}" \
+                         f"  {clouds:>{W_CLD}}:{precipitation:<{W_CLD}}" \
+                         f"  {wind_direction:>{W_WIND}} {wind_speed:>{W_SPEED}}  << {wind_gust:>{W_GUST}}" \
+                         f"  {pressure:>{W_AP}} {ultraviolet:>{W_UV}} {air_quality_epa:>{W_AQI}} "
         i += 1
 
     return forecast_text
@@ -346,11 +378,11 @@ def deep_format(value, key):
         value = round(value / 1.333)  # mbar to mmHg
         low, high = category['normal']
         if value < low:
-            value = f"low {value}mmHg"
+            value = f"low {value}"
         elif value > high:
-            value = f"high {value}mmHg"
+            value = f"high {value}"
         else:
-            value = f"norm {value}mmHg"
+            value = f"norm {value}"
     else:
         value = round(value)
         for index in category:
@@ -366,8 +398,9 @@ def check_alerts(output_text, info):
     """ check: temperature, precipitation, wind_speed, ultraviolet, air quality """
     info_weather, info_airquality = info
     alerts_massages = ""
-    i = 0
     tomorrow = len(info_weather) - 1
+
+    i = 0
     for weather, airquality in zip(info_weather, info_airquality):
         if i != tomorrow:
             ttime = f"\n~{weather['timestamp_local'][11:-3]}~~:"
@@ -376,24 +409,34 @@ def check_alerts(output_text, info):
         alerts = ""
 
         temperature = weather['temp']
-        alerts += "/it is very cold" if temperature <= ALERT_TEMPERATURE[0] else ""
-        alerts += "/it is very hot" if temperature >= ALERT_TEMPERATURE[1] else ""
+        if temperature <= ALERT_TEMPERATURE[0]:
+            alerts += "`very cold`"
+        elif temperature >= ALERT_TEMPERATURE[1]:
+            alerts += "`very hot`"
+
         precipitation = weather['pop']
         if ALERT_PRECIPITATION[0] <= precipitation <= ALERT_PRECIPITATION[1]:
-            alerts += "/precipitation is likely"
-        alerts += "/downfall" if precipitation >= ALERT_PRECIPITATION[1] else ""
+            alerts += "`precipitation is likely`"
+        elif precipitation > ALERT_PRECIPITATION[1]:
+            alerts += "`downfall`"
+
         wind_speed = weather['wind_spd']
         if ALERT_WIND_SPEED[0] <= wind_speed <= ALERT_WIND_SPEED[1]:
-            alerts += "/it is strong gale outside"
-        alerts += "/dangerous storm" if wind_speed >= ALERT_WIND_SPEED[1] else ""
+            alerts += "`strong gale`"
+        elif wind_speed > ALERT_WIND_SPEED[1]:
+            alerts += "`dangerous storm`"
+
         ultraviolet = weather['uv']
         if ALERT_ULTRAVIOLET[0] <= ultraviolet <= ALERT_ULTRAVIOLET[1]:
-            alerts += "/it is high solar activity"
-        alerts += "/hazardous radiation" if ultraviolet >= ALERT_ULTRAVIOLET[1] else ""
+            alerts += "`high solar activity`"
+        elif ultraviolet > ALERT_ULTRAVIOLET[1]:
+            alerts += "`hazardous radiation`"
+
         air_quality = airquality['aqi']
         if ALERT_AIR_QUALITY[0] <= air_quality <= ALERT_AIR_QUALITY[1]:
-            alerts += "/it is high pollution there"
-        alerts += "/big blowout of contamination" if air_quality >= ALERT_AIR_QUALITY[1] else ""
+            alerts += "`high pollution`"
+        elif air_quality > ALERT_AIR_QUALITY[1]:
+            alerts += "`big blowout of contamination`"
 
         if alerts:
             alerts_massages += ttime + alerts
@@ -424,14 +467,14 @@ def send_email(email_text):
             with open(GMAIL_APP_PASSWORD, 'br') as app_password:
                 password = base64.b64decode(app_password.read()).decode('UTF-8')
 
-            logging.debug(f"{account} {password}")
             authentication = connection.login(account, password)
             assert authentication[0] == 235, f"3 login fail {authentication[0]}"
 
             raw_text = email_text.encode('utf-8')
             result = connection.sendmail(account, addressee, raw_text)
             assert len(result) == 0, f"4 sendmail fail {result}"
-        except OSError or AssertionError or Exception as error:
+
+        except (OSError, AssertionError, Exception) as error:
             errors.append(str(error))
             if attempt <= max_attempt:
                 attempt += 1
