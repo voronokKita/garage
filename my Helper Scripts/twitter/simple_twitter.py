@@ -3,7 +3,7 @@
 My simple twitter api experiment.
 The script can update status, optionally with one media,
 delete tweets by id,
-display a timeline,
+display the timeline,
 show recent retweets or mentions.
 """
 import tweepy
@@ -11,8 +11,8 @@ import pathlib
 from time import sleep
 
 
-CWD = pathlib.Path(__file__).resolve().parent
-DATA = pathlib.Path(CWD, "data")
+FOLDER = pathlib.Path(__file__).resolve().parent
+DATA = pathlib.Path(FOLDER, "data")
 KEYS_FILES = [
     pathlib.Path(DATA, "consumer_api_key"),
     pathlib.Path(DATA, "consumer_api_key_secret"),
@@ -25,7 +25,6 @@ KEYS = {
     'access_token': "access token: ",
     'access_secret': "access token secret: "
 }
-
 COMMANDS = [
     "home [timeline]",
     "20 most recent [retweets] of me",
@@ -95,7 +94,7 @@ def main():
                 if 0 < len(text) < 250:
                     break
                 elif len(text) >= 250:
-                    print("the text is too big :C")
+                    print("the text is to big :C")
 
             if not media:
                 result = t.update_status(text)

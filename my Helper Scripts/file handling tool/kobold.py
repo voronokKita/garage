@@ -29,11 +29,12 @@ from collections import defaultdict
 from openpyxl.styles import NamedStyle, Font, Alignment
 
 
-SPEED = 2
 STEP = 0.1
+SPEED = 2
 
-FONT = "Arial"
 SIZE = 11
+FONT = "Arial"
+SPREADSHEET_NAME = "project_table.xlsx"
 
 """ Project structure """
 folder = pathlib.Path(__file__).resolve().parent
@@ -45,19 +46,18 @@ PROJECT = [
     pathlib.Path(folder, "5 dir"),
     pathlib.Path(folder, "6 dir"),
 ]
-
 OLD_FILES = pathlib.Path(folder, "OLD")
 
 PATTERN = re.compile(r'''(
         ((\d{4}\.\d\d\.\d\d)\.)     # date
-        (\d{4})                     # counter
-        (\.(\w{1,3}))?              # category 1-3
-        (\.([^.]{5,}))              # filename 5+
-        (\.\w{2,4})                 # extention
+        (\d{4})                     # counter 04d int
+        (\.([A-Z]{1,3}))?           # category 1-3 char (optional)
+        (\.([^.]{5,}))              # filename 5+ char
+        (\.[A-Z]{2,4})              # extention 2-4 char
     )''', re.VERBOSE | re.I)
 """ Result in 8 parts:
-    [('2021.08.03.0000.b.new_name.txt', 
-    '2021.08.03.', '2021.08.03', '0000', '.b', 'b', '.new_name', 'new_name', '.txt')] """
+[('2021.08.03.0000.b.new_name.txt', '2021.08.03.', '2021.08.03', '0000', '.b', 'b', '.new_name', 'new_name', '.txt')]
+[('2021.08.03.0001.new_name.txt', '2021.08.03.', '2021.08.03', '0000', '', '', '.new_name', 'new_name', '.txt')] """
 
 
 class FilesLostError(Exception):
@@ -65,7 +65,7 @@ class FilesLostError(Exception):
 
 
 def main():
-    sleep(SPEED)
+    sleep(STEP)
     initial_amount = len(load_files())
     print(f"project has {initial_amount} files")
     
@@ -93,10 +93,11 @@ def main():
         
 
 def load_files():
-    """ Load paths of files """
+    """ Load paths of files 
+        return: [list] of files """
     project_content = []    
     for directory in PROJECT:
-        assert directory.exists(), "project structure has changed"
+        assert directory.exists(), "STOP. project structure has changed"
         project_content += [item for item in directory.rglob('*') if item.is_file()]
     return project_content
 
@@ -116,7 +117,8 @@ def bad_names_structure():
     for file in load_files():
         if not PATTERN.search(file.name):
             print("incorrect filename:\t", file)
-            errors = True
+            if not errors:
+                errors = True
             sleep(STEP)
     
     print("incorrect names.") if errors else print("OK names structure")
@@ -219,26 +221,25 @@ def recount(incorrect_counters):
         file.rename(pathlib.Path(file.parent, new_name))
 
     print(errors, "files renamed")
-    pass
 
 
 def make_spreadsheet():
     """
     Create a table by dividing all files into two groups, one after the other:
             id  date        category    name    path
-    head    0   yyyy.mm.dd  a           text1   /.
+    head    0   yyyy.mm.dd  gd          text1   /.
     ...
     bottom  99  yyyy.mm.dd              text99  /.
     """
     sleep(SPEED)
     print("updating spreadsheet")
-
     book = style_spreadsheet()
     sheet = book["Main"]
-
+    styles = ["", "numeric", "date", "category", "name", "path"]
+    
     # make two list's of files according to category
     id_ = 0
-    row = 2
+    row = 2    
     for half in ("head", "bottom"):
         files = sorted(load_files(), key=lambda f: f.name, reverse=True)
 
@@ -256,16 +257,10 @@ def make_spreadsheet():
             file_path = str(file.parent)
             line = [id_, date, category, name, file_path]
 
-            for column, value in enumerate(line, start=1):
-                if column == 1:
-                    style = "numeric"
-                elif column == 2:
-                    style = "date"
-                elif column == 3:
-                    style = "category"
-                elif column == 4:
-                    if not category:
-                        style = "name"
+            for column, value in enumerate(line, start=1):                
+                if column == 4:
+                    if not category or category == "d":
+                        style = styles[column]
                     elif category == "gd":
                         style = "gd"
                     elif category == "ld":
@@ -274,10 +269,8 @@ def make_spreadsheet():
                         style = "gld"
                     elif category == "fld":
                         style = "fld"
-                    else:
-                        style = "name"
-                else:
-                    style = "path"
+                else:                
+                    style = styles[column]
 
                 cell = sheet.cell(row=row, column=column)
                 cell.style = style
@@ -293,11 +286,11 @@ def make_spreadsheet():
                 sheet.append(["", "", "", "", ""])
                 row += 3
 
-    old = pathlib.Path(folder, "project_table.xlsx")
+    old = pathlib.Path(folder, SPREADSHEET_NAME)
     if old.exists():
         old.rename(pathlib.Path(OLD_FILES, f"{old.name} (old)"))
     
-    book.save("project_table.xlsx")
+    book.save(SPREADSHEET_NAME)
 
 
 def style_spreadsheet():
