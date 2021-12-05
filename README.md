@@ -1,5 +1,5 @@
 # garage
-## My code, courses, examples and reminders
+### My code, courses, examples and reminders
 
 ### My homepage on GitHub Pages:
 > https://voronokkita.github.io/<br>
