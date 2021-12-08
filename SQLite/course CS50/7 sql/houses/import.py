@@ -1,12 +1,13 @@
 #! python3
 """
-CS50 PSet 7: Houses import
+fall 2020 CS50 PSet 7: Houses import
 Import student data from a CSV spreadsheet;
 Insert each student into a students.db database.
 """
 import cs50
 import sys
 import csv
+
 
 if len(sys.argv) != 2:
     print(f"USAGE: python {sys.argv[0]} characters.csv")

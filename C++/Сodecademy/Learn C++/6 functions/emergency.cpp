@@ -1,3 +1,4 @@
+// code examples
 #include <iostream>
 
 void get_emergency_number(std::string emergency_number) {

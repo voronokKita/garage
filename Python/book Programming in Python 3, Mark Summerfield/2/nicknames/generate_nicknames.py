@@ -3,6 +3,7 @@
 Read data from users.txt, and generate nicknames.
 Print sorted table of users, like
 "Montgomery, Albert L... (1601) almontgo"
+v1 summer 2020
 v2 print users in 2 columns
 """
 import sys

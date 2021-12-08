@@ -1,5 +1,6 @@
 <?php
-// My first PHP statement
+// code examples
+
 echo "Hello, PHP!";
 
 /* "I've never thought of PHP as more 

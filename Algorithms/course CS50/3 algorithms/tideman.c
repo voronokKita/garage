@@ -1,4 +1,4 @@
-/*  CS50 PSet 3: Tideman
+/*  fall 2020 CS50 PSet 3: Tideman
  *
  *  Runs a Tideman election.
  *  May assume that no two candidates will have the same name.
@@ -151,8 +151,6 @@ void record_preferences(int ranks[])
             }
         }
     }
-
-    return;
 }
 
 void add_pairs(void)
@@ -181,17 +179,15 @@ void add_pairs(void)
             }
         }
     }
-    
-    return;
 }
 
 void sort_pairs(void)
 {
-    /*  Sort pairs in decreasing order by strength of victory.
+    /*  Sort pairs in decreasing order by the strength of victory.
      *  expected input like: 3 pairs; A>B, C>A, C>B
      *  output: strength[0] = votes, strength[1] = votes, strength[2] = votes
      */
-    // Get strength of each victory:
+    // Get the strength of each victory:
     int strength[pair_count];
     int x, y, pair;
     for (pair = 0; pair < pair_count; pair++)
@@ -223,8 +219,6 @@ void sort_pairs(void)
             k--;
         }
     }
-
-    return;
 }
 
 void lock_pairs(void)
@@ -249,8 +243,6 @@ void lock_pairs(void)
             locked[x][y]++;
         }
     }
-
-    return;
 }
 
 bool cycle(int winner, int x)
@@ -278,11 +270,11 @@ void print_winner(void)
 {
     /* Print the winner of the election. */
 
-    // List of pretenders candidates
+    // List of pretenders
     bool pretenders[candidate_count];
     memset(pretenders, true, candidate_count);
 
-    // If candidate locked, strike him from list:
+    // If a candidate is locked, strike him from the list:
     int x, y;
     for (x = 0; x < candidate_count; x++)
     {
@@ -295,7 +287,7 @@ void print_winner(void)
         }
     }
 
-    // Find one last who is not locked and grac:
+    // Find the one last who is not locked and grac:
     for (int candidate = 0; candidate < candidate_count; candidate++)
     {
         if (pretenders[candidate] == true)
@@ -303,5 +295,4 @@ void print_winner(void)
             printf("%s\n", candidates[candidate]);
         }
     }
-    return;
 }

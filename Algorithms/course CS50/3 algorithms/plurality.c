@@ -1,4 +1,4 @@
-/*  CS50 PSet 3: Plurality
+/*  fall 2020 CS50 PSet 3: Plurality
  *
  *  Runs a plurality election.
  *  May assume that no two candidates will have the same name.
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
         }
     }
 
-    // Display winner of election.
+    // Display winner of the election.
     print_winner();
 
     return 0;

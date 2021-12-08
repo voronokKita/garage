@@ -1,4 +1,6 @@
 <?php
+/* code examples */
+
 $mood = ":)";
 $biography = "\nI love cats (･ω･)";
 $favorite_food = "\n" . "tur" . "duck" . "en";

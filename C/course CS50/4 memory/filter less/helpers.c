@@ -1,4 +1,4 @@
-/*  CS50 PSet 4: Filter helpers less
+/*  fall 2020 CS50 PSet 4: Filter helpers less
  *
  *  Applies filters to BMPs:
  *  Grayscale, Sepia, Reflect and Blur.
@@ -10,7 +10,7 @@
 
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
-    /* Convert image to grayscale. */
+    /* Convert am image to grayscale. */
     // Find average RGB:
     int x, y, average;
     for (y = 0; y < height; y++)
@@ -27,13 +27,12 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             image[y][x].rgbtBlue = average;
         }
     }
-    return;
 }
 
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
-    /*  Convert image to sepia.
-     *  Apply sepia formula:
+    /*  Convert an image to sepia.
+     *  Apply the sepia formula:
      *  output Red   = (inputRed * .393) + (inputGreen *.769) + (inputBlue * .189)
      *  output Green = (inputRed * .349) + (inputGreen *.686) + (inputBlue * .168)
      *  output Blue  = (inputRed * .272) + (inputGreen *.534) + (inputBlue * .131)
@@ -61,18 +60,17 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             image[y][x].rgbtBlue = (output_B > 255.0) ? 255 : roundf(output_B);
         }
     }
-    return;
 }
 
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    /* Reflect image horizontally. */
+    /* Reflect an image horizontally. */
     
     int x, y, opposite;
     int tmp_R, tmp_G, tmp_B;
     const int half = width / 2;
     
-    // Array reverse:    
+    // Array reverse:
     for (y = 0; y < height; y++)
     {
         for (x = 0; x < half; x++)
@@ -92,18 +90,17 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             image[y][opposite].rgbtBlue = tmp_B;
         }
     }
-    return;
 }
 
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    /* Blur image with box blur. */
+    /* Blur an image with the box blur. */
     
     RGBTRIPLE blur_image[height][width];
     int x, y, k, j, shift_y, shift_x, divisor;
     int average_red, average_green, average_blue;
 
-    // Fill blurred copy of image:    
+    // Fill blurred copy of the image:
     for (y = 0; y < height; y++)
     {
         for (x = 0; x < width; x++)
@@ -118,18 +115,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             for (k = -1; k <= 1; k++)
             {
                 if (y + k < 0 or y + k >= height)
-                {
-                    // out of border
                     continue;
-                }
 
                 for (j = -1; j <= 1; j++)
                 {
                     if (x + j < 0 or x + j >= width)
-                    {
-                        // out of border
                         continue;
-                    }
 
                     // Set indexes
                     shift_y = y + k;
@@ -159,6 +150,4 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[y][x].rgbtBlue = blur_image[y][x].rgbtBlue;
         }
     }
-
-    return;
 }

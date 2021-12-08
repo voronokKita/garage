@@ -1,4 +1,4 @@
-/*  CS50 Lab 1: Population Growth
+/*  fall 2020 CS50 Lab 1: Population Growth
  *
  *  Ask the user for the start & the threshold of (llamas) population,
  *  calculate years to the population to reach the threshold.

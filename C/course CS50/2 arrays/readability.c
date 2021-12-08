@@ -1,4 +1,4 @@
-/*  CS50 PSet 2: Readability
+/*  fall 2020 CS50 PSet 2: Readability
  *
  *  Asks the user for some text and then rates the text difficulty.
  */
@@ -9,7 +9,7 @@
 #include <ctype.h>
 #include <math.h>
 
-// Index in counters[i]:
+// Entities in the counters[i]:
 #define WORDS 0
 #define LETTERS 1
 #define SENTENCES 2
@@ -28,19 +28,12 @@ int main(void)
     // The Coleman-Liau index;
     int index = readability(counters);
 
-    // Output:
     if (index < 1)
-    {
         printf("Before Grade 1\n");
-    }
     else if (index > 16)
-    {
         printf("Grade 16+\n");
-    }
     else
-    {
         printf("Grade %i\n", index);
-    }
 
     return 0;
 }

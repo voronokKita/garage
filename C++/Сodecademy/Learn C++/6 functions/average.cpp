@@ -1,3 +1,4 @@
+// code examples
 #include <iostream>
 
 double average(double num1, double num2) {

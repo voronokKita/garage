@@ -1,19 +1,15 @@
 """
-CS50 Lab 9: Birthdays
+fall 2021 CS50 Lab 9: Birthdays
 Web application which will keep track of friends’ birthdays.
 """
 import os
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 
-# Configure application
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-
-# Ensure templates are auto-reloaded
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-# Configure CS50 Library to use SQLite database
 db = SQL('sqlite:///birthdays.db')
 
 BIRTHDAY_FORM = ["Name", "Month", "Day"]
@@ -25,12 +21,12 @@ def index():
     if request.method == 'POST':
         """ Add the user's entry into the database. """
 
-        # Get user input;
+        # Get user's input;
         name = request.form.get('Name')
         month = request.form.get('Month')
         day = request.form.get('Day')
 
-        # Check user input for more-less correctness;
+        # Check user's input for more-less correctness;
         error = False
         if len(name) == 0 or len(month) == 0 or len(day) == 0:
             flash("Fields must not be empty.")
@@ -50,7 +46,6 @@ def index():
                     flash("Day value incorrect.")
                     error = True
 
-        # Insert into db;
         if not error:
             """
             May assume that
@@ -61,12 +56,13 @@ def index():
 
             if len(result) == 0:
                 db.execute('INSERT INTO birthdays (name, month, day) VALUES (?, ?, ?)', name, month, day)
+            
             elif result[0]['month'] == month and result[0]['day'] == day:
                 db.execute('DELETE FROM birthdays WHERE name == (?)', name)
+            
             else:
                 db.execute('UPDATE birthdays SET month = (?), day = (?) WHERE name = (?)', month, day, name)
 
-        # Done.
         return redirect('/')
 
     else:

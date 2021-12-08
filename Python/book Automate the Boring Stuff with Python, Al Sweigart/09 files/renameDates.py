@@ -1,7 +1,7 @@
 #! python3
-""" My implementation of date file rename;
-    renames filenames with American MM-DD-YYYY
-    date format to European DD-MM-YYYY. """
+""" spring 2021
+renames filenames with American MM-DD-YYYY
+date format to European DD-MM-YYYY. """
 import re
 import sys
 import time

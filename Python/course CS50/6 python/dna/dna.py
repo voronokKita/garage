@@ -1,5 +1,5 @@
 """
-CS50 PSet 6: DNA
+fall 2020 CS50 PSet 6: DNA
 Identifies a person based on their DNA.
 """
 import sys

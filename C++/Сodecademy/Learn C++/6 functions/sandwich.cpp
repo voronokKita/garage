@@ -1,3 +1,4 @@
+// code examples
 #include <iostream>
 
 bool morning = true;
@@ -11,7 +12,7 @@ std::string make_sandwich() {
     if (morning) {
         sandwich += "egg\n";
     }
-    sandwich += "bread\n;
+    sandwich += "bread\n";    
     return sandwich;
 }
 

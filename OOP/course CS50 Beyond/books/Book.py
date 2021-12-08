@@ -1,4 +1,4 @@
-""" Thanks to CS50 on Twitch for inspiration. """
+""" winter 2021, Thanks to CS50 on Twitch for inspiration. """
 
 
 class Book:

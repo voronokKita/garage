@@ -1,5 +1,5 @@
 #! python3
-"""
+""" spring 2021
 methods:
     pattern = re.compile(?) create regex
     pattern.search(text) search from beginning of string

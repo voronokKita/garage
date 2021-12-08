@@ -1,17 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Buy
+  Buy
 {% endblock %}
 
 {% block main %}
-    <form action='/buy' method='post'>
-        <div class='form-group'>
-            <input class='form-control' name="symbol" placeholder="Symbol" type='text' autocomplete='off' autofocus>
-        </div>
-        <div class='form-group'>
-            <input class='form-control' name="shares" placeholder="Number of shares" type='text' autocomplete='off'>
-        </div>
-        <button class='btn btn-primary' type='submit'>Buy</button>
-    </form>
+  <form action='/buy' method='post'>
+    <div class='form-group'>
+      <input class='form-control' name="symbol" placeholder="Symbol" type='text' autocomplete='off' autofocus>
+    </div>
+    <div class='form-group'>
+      <input class='form-control' name="shares" placeholder="Number of shares" type='text' autocomplete='off'>
+    </div>
+    <button class='btn btn-primary' type='submit'>Buy</button>
+  </form>
 {% endblock %}

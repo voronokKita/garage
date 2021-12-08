@@ -1,6 +1,7 @@
 #! python3
-""" My implementation of simple password manager; 
-    with lot of exceptions. """
+""" spring 2021
+My implementation of simple password manager; 
+with lot of exceptions. """
 import os
 import sys
 import csv

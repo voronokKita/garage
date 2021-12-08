@@ -1,3 +1,4 @@
+// code examples
 #include <iostream>
 
 std::string needs_water(int days, bool is_succulent) {

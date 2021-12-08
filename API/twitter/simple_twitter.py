@@ -1,5 +1,6 @@
 #! python3
 """
+v1 2021.08
 My simple twitter api experiment with tweepy library.
 The script can update status, optionally with one media,
 delete tweets by id,
@@ -128,6 +129,7 @@ def main():
 
 def load():
     """ Load api-keys from files or command line. """
+    
     found = False
     if DATA.exists():
         try:

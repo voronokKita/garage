@@ -4,6 +4,8 @@ Rename screenshots and other pictures in script folder.
 0) ask parameters
 1) look for files in ./
 2) rename
+
+v1 fall 2020
 """
 import sys
 import time

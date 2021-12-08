@@ -1,6 +1,6 @@
-/*  CS50 Lab 7: Songs
-    Write SQLite3 queries to answer questions about a database of songs from Spotify. */
-
+/*  fall 2020 CS50 Lab 7: Songs
+ *  Write SQLite3 queries to answer questions about a database of songs from Spotify.
+ */
 
 /* Query 1: lists the names of all songs in the database. */
 SELECT name FROM songs;

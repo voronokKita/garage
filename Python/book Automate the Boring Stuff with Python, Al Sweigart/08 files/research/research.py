@@ -1,8 +1,9 @@
 #! python3
-""" Asks the user for a regular expression,
-    opens all csv files in a folder
-    searches them for a re
-    and output the result. """
+""" spring 2021
+Asks the user for a regular expression,
+opens all csv files in a folder
+searches them with the re
+and output the result. """
 import re
 import sys
 import csv

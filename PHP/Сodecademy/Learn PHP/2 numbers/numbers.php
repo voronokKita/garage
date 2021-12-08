@@ -1,4 +1,6 @@
 <?php
+/* code examples */
+
 $my_int = 9;
 echo $my_int;
 echo "\n";

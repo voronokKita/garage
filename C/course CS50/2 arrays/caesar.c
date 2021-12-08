@@ -1,10 +1,9 @@
-/*  CS50 PSet 2: Caesar
+/*  fall 2020 CS50 PSet 2: Caesar
  *
  *  Uses a int-argument as an encryption key;
- *  ask the user for enter text
+ *  ask the user for enter some text
  *  and then print encrypted result of that text.
  */
-
 #include <stdio.h>
 #include <cs50.h>
 #include <iso646.h>

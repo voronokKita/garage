@@ -1,6 +1,6 @@
-/*  CS50 PSet1: Mario more
+/*  fall 2020 CS50 PSet1: Mario more
  *
- *  Build 2 symmetric stairs of #hashes with 2 spaces between.
+ *  Build two symmetric stairs of #hashes with 2 spaces between.
  */
 
 #include <stdio.h>

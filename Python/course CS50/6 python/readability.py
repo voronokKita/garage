@@ -1,7 +1,8 @@
 #! python3
-""" CS50 PSet 6: Readability
+""" fall 2020 CS50 PSet 6: Readability
     Computes and rate the approximate text difficulty. """
 import string
+
 
 ALPHABET = string.ascii_letters
 

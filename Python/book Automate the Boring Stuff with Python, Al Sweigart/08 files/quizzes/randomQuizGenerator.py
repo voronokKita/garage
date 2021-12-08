@@ -1,7 +1,7 @@
 #! python3
-""" My implementation of Quiz Generator.
-    Creates quizzes with questions and answers in
-    random order, along with the answer key. """
+""" spring 2021
+Creates quizzes with questions and answers in
+random order, along with the answer key. """
 import sys
 import random
 

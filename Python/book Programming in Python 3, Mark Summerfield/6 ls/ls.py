@@ -1,5 +1,5 @@
 #! python3
-"""
+""" summer 2020
 Unix ls command analogue.
 Scan directories for files with parameters:
 -H, --hidden        show hidden files

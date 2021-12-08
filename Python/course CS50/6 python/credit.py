@@ -1,5 +1,5 @@
 #! python3
-""" CS50 PSet 6: Credit
+""" fall 2020 CS50 PSet 6: Credit
     Determines whether a provided credit card number is valid
     according to Luhn’s algorithm. """
 
@@ -30,7 +30,7 @@ if MIN <= number < MAX:
         if n == VISA_HEADER:
             brand = n
 
-# Run Luhn's test if card is probably valid;
+# Run the Luhn's test if card is probably valid;
 luhn_result = False
 if brand > 0:
     """ Luhn’s Algorithm:

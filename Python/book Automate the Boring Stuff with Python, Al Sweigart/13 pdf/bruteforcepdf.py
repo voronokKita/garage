@@ -1,5 +1,5 @@
 #! python3
-""" Bruteforce the password for the pdf file. """
+""" spring 2021 Bruteforce the password for the pdf file. """
 import sys
 import PyPDF2
 import datetime

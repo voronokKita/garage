@@ -1,6 +1,7 @@
 #! python3
-""" Opening random video with cat;
-    with simple linear execution. """
+""" spring 2021
+Opening random video with cat;
+with simple linear execution. """
 import sys
 import time
 import random

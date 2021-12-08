@@ -1,6 +1,7 @@
 #!python3
-""" My implementation of Tic-tac-toe game,
-    with artificial intelligence!) """
+""" spring 2021
+My implementation of Tic-tac-toe game,
+with artificial intelligence!) """
 import sys
 import random
 

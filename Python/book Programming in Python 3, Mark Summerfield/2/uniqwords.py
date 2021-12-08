@@ -1,9 +1,8 @@
 #! python3
-"""
+""" summer 2020
 Analise txt files in commandline,
 Print list of words in files and their counts;
 Sorted by value.
-v3
 """
 import sys
 import string

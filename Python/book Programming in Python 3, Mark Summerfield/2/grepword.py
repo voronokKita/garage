@@ -1,5 +1,5 @@
 #! python3
-""" Search files for keyword-argument and print words with key. """
+""" summer 2020 Search files for keyword-argument and print words with key. """
 import sys
 
 if len(sys.argv) < 3:

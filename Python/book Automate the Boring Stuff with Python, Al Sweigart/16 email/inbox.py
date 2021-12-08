@@ -1,7 +1,8 @@
 #! python3
-""" Establishes an imap connection to gmail and
-    allows to select a folder, enter arguments and
-    read the text from emails. """
+""" spring 2021
+Establishes an imap connection to gmail and
+allows to select a folder, enter arguments and
+read the text from emails. """
 import sys
 import pyzmail
 import imaplib

@@ -1,6 +1,7 @@
 #! python3
-""" Flips a coin 10 times, offers to guess the results;
-    logs the flow of execution. """
+""" spring 2021
+Flips a coin 10 times, offers to guess the results;
+logs the flow of execution. """
 import sys
 import random
 import logging

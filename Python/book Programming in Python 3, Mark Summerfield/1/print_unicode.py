@@ -1,5 +1,5 @@
 #! python3
-""" Print unicode table by keyword. v2 """
+""" summer 2020 Print unicode table by keyword. """
 import sys
 import unicodedata
 import time

@@ -1,9 +1,8 @@
-/*  CS50 Lab 2: Scrabble
+/*  fall 2020 CS50 Lab 2: Scrabble
  *
  *  Asks the user for two words,
- *  calculate the "value" of words and compare them.
+ *  calculate "values" of words and compare them.
  */
-
 #include <stdio.h>
 #include <cs50.h>
 #include <ctype.h>
@@ -21,17 +20,11 @@ int main(void)
     int score_two = scrabble(word_two);
 
     if (score_one > score_two)
-    {
         printf("Player 1 wins!\n");
-    }
     else if (score_one < score_two)
-    {
         printf("Player 2 wins!\n");
-    }
     else
-    {
         printf("Tie!\n");
-    }
 
     return 0;
 }

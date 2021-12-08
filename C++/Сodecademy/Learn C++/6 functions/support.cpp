@@ -1,3 +1,4 @@
+// code examples
 #include <iostream>
 
 bool needs_it_support() {

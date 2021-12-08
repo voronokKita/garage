@@ -1,6 +1,7 @@
 #! python3
-""" Input user argument digits and
-    print them like a big numeric symbols. """
+""" summer 2020 
+Input user argument digits and
+print them like a big numeric symbols. """
 import sys
 
 Zero = ["  ***  ",

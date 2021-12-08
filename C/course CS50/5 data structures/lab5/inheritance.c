@@ -1,4 +1,4 @@
-/*  CS50 Lab 5: Inheritance
+/*  fall 2020 CS50 Lab 5: Inheritance
  *
  *  Simulate genetic inheritance of blood type.
  */
@@ -38,7 +38,7 @@ person *create_family(int generations)
 {
     /* Create a new individual with generations. */
 
-    // Allocate memory for new person
+    // Allocate memory for a new person
     person *p = malloc(sizeof(person));
     if (p == NULL)
     {
@@ -73,7 +73,7 @@ person *create_family(int generations)
         p->alleles[1] = random_allele();
     }
 
-    // Return newly created person.
+    // Return the newly created person.
     return p;
 }
 
@@ -84,17 +84,11 @@ char random_allele()
     int allele = rand() % 3;
 
     if (allele == 0)
-    {
         return 'A';
-    }
     else if (allele == 1)
-    {
         return 'B';
-    }
     else
-    {
         return 'O';
-    }
 }
 
 void print_family(person *p, int generation)
@@ -103,39 +97,30 @@ void print_family(person *p, int generation)
 
     // Handle base case
     if (p == NULL)
-    {
         return;
-    }
 
     // Print indentation;
     int indentation = generation * INDENT_LENGTH;
     for (int i = 0; i < indentation; i++)
-    {
         putchar(' ');
-    }
 
-    // Print person;
+    // Print the person;
     printf("Generation %i, blood type %c%c\n", generation, p->alleles[0], p->alleles[1]);
 
-    // Print parents.
+    // Print his parents.
     print_family(p->parents[0], generation + 1);
     print_family(p->parents[1], generation + 1);
-
-    return;
 }
 
 void free_family(person *p)
 {
-    /* Free person and all ancestors of person. */
+    /* Free a person and all his ancestors. */
 
     if (p == NULL)
-    {
         return;
-    }
 
     free_family(p->parents[0]);
     free_family(p->parents[1]);
 
     free(p);
-    return;
 }

@@ -1,6 +1,7 @@
 #! python3
-""" Ask for number of rows and columns, min and max numbers;
-    print grid of random numbers between min and max. """
+""" summer 2020 
+Ask for number of rows and columns, min and max numbers;
+print grid of random numbers between min and max. """
 import random
 
 MIN_RC = 1

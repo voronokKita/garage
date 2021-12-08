@@ -1,6 +1,6 @@
 #!/path/to/project/venv/bin/python
 """
-VERSION 1.5
+VERSION 1.5 2021.07
 Request weather forecast via api;
 processes and outputs to the terminal, or sends to email.
 Example:
@@ -62,9 +62,11 @@ GMAIL_APP_PASSWORD = f"{script_data_files}/gmailpassword"
 
 # weather categories (low, high) borders
 BEAUFORT_SCALE = {
-    'calm': (0, 0.5), 'light air': (0.6, 1.5), 'l-breeze': (1.6, 3.3), 'g-breeze': (3.4, 5.5), 'm-breeze': (5.6, 7.9),
-    'f-breeze': (8, 10.7), 's-breeze': (10.8, 13.8), 'wind': (13.9, 17.1), 'GALE': (17.2, 20.7),
-    'S-GALE': (20.8, 24.4), 'STORM': (24.5, 28.4), 'H-STORM': (28.5, 32.6), 'HURRICANE': (32.7, 100)
+    'calm': (0, 0.5), 'light air': (0.6, 1.5), 'l-breeze': (1.6, 3.3), 
+    'g-breeze': (3.4, 5.5), 'm-breeze': (5.6, 7.9), 'f-breeze': (8, 10.7), 
+    's-breeze': (10.8, 13.8), 'wind': (13.9, 17.1), 'GALE': (17.2, 20.7),
+    'S-GALE': (20.8, 24.4), 'STORM': (24.5, 28.4), 'H-STORM': (28.5, 32.6), 
+    'HURRICANE': (32.7, 100)
 }
 AIR_QUALITY_EPA = {
     'green air': (0, 50), 'moderate': (51, 100), 'unhealthy': (101, 150),
@@ -109,7 +111,6 @@ def main():
                         format="%(asctime)s — %(levelname)s: [[ %(message)s ]]")
     logging.info("Start")
 
-    # determine operating mode
     if len(sys.argv) == 1:
         mode = 'LOCAL'
     elif sys.argv[1] in ['-r', '--mail']:
@@ -118,13 +119,9 @@ def main():
         print(USAGE)
         logging.info("printing usage help.")
         sys.exit(1)
-        
     logging.info(f"operating mode {mode}")
 
-    # json file check
     requests_json = weather_files_check()
-
-    # request new file or loads existing one
     try:
         if requests_json:
             info = request_weather_data()
@@ -142,19 +139,15 @@ def main():
         logging.exception("JSON")
         sys.exit(2)
 
-    # prepare data based on current time and working conditions
     info = preprocess(info)
     logging.info("OK data preprocess")
 
-    # format forecast
     forecast_text = format_weather(info)
     logging.info("OK forecast text format")
 
-    # check alarms and bad weather
     output_text = check_alerts(forecast_text, info)
     logging.info("OK alerts check")
 
-    # send forecast by mail if MODE == REMOTE
     if mode == 'REMOTE':
         try:
             send_email(output_text)
@@ -164,7 +157,6 @@ def main():
         else:
             logging.info("send email successfully!")
 
-    # display forecast in the terminal if MODE == LOCAL
     elif mode == 'LOCAL':
         print(output_text)
         logging.info("output to terminal")
@@ -174,8 +166,8 @@ def main():
 
 
 def weather_files_check():
-    """ Check if weather files exists in folder; check files lifetime.
-        :return: bool"""
+    """ Check if weather files exists in folder; check files lifetime. :return: bool """
+
     requests_json = False
     lifetime = datetime.timedelta(hours=UPDATE_TIME)
     for datafile in (FILE_FORECASTS, FILE_AIRQUALITY):
@@ -189,11 +181,13 @@ def weather_files_check():
         if (datetime.datetime.now() - mod_date) > lifetime:
             requests_json = True
             break
+
     return requests_json
 
 
 def request_weather_data():
     """ :return: tuple(list, list) """
+    
     info_weather = None
     info_airquality = None
     sources = ((URL_FORECASTS, FILE_FORECASTS), (URL_AIRQUALITY, FILE_AIRQUALITY))
@@ -224,6 +218,7 @@ def request_weather_data():
 
 def loads_weather_data():
     """ :return: tuple(list, list) """
+
     info_weather = None
     info_airquality = None
     for datafile in (FILE_FORECASTS, FILE_AIRQUALITY):
@@ -250,7 +245,7 @@ def preprocess(info):
     3) determine time intervals
 
     Two process options based on time of day:
-    I MORNING -> EVENING
+    I  MORNING -> EVENING
     II EVENING -> NIGHT
 
     :return: tuple(list, list)
@@ -344,7 +339,7 @@ def format_weather(info):
         clouds = f"{round(weather['clouds']):03}%"
         precipitation = f"{round(weather['pop']):03}%"
 
-        wind_direction = f"{weather['wind_cdir']} <"  # TODO
+        wind_direction = f"{weather['wind_cdir']} <"
         wind_speed = f"{deep_format(weather['wind_spd'], 'wind_speed')}m/s"
         wind_gust = f"{round(weather['wind_gust_spd'])}m/s"
 
@@ -363,6 +358,7 @@ def format_weather(info):
 
 def deep_format(value, key):
     """ :return: formatted str """
+
     category = dict
     if key == 'pressure':
         category = ATMOSPHERIC_PRESSURE
@@ -396,6 +392,7 @@ def deep_format(value, key):
 
 def check_alerts(output_text, info):
     """ check: temperature, precipitation, wind_speed, ultraviolet, air quality """
+    
     info_weather, info_airquality = info
     alerts_massages = ""
     tomorrow = len(info_weather) - 1

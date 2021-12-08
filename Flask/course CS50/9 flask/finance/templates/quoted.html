@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Quoted
+  Quoted
 {% endblock %}
 
 {% block main %}
-    <form action="/quote" method="post">
-        A share of {{ company }} ({{ symbol }}) costs {{ price | usd }}.
-    </form>
+  <form action="/quote" method="post">
+    A share of {{ company }} ({{ symbol }}) costs {{ price | usd }}.
+  </form>
 {% endblock %}

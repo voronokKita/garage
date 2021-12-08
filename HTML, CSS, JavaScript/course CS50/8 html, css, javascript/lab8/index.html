@@ -1,35 +1,31 @@
 <!DOCTYPE html>
-
 <!--
-CS50 Lab 8: Trivia
+fall 2020 CS50 Lab 8: Trivia
 Write a webpage that lets users answer trivia questions.
 -->
-
 <html lang='en'>
+  <head>
+    <link rel='stylesheet' href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap">
+    <link rel='stylesheet' href="styles.css">
 
-<head>
+    <title>Trivia!</title>
 
-<link rel='stylesheet' href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap">
-<link rel='stylesheet' href="styles.css">
+    <script>
+      // Code to check answers to questions:
+      const first_correct_answer = 3;
+      const second_correct_answer = /CS50/i;
+      const defaultButtonColor = '#d9edff';
+      var tmpButton;
 
-<title>Trivia!</title>
-
-<script>
-    // Code to check answers to questions:
-    const first_correct_answer = 3;
-    const second_correct_answer = /CS50/i;
-    const defaultButtonColor = '#d9edff';
-    var tmpButton;
-
-    function question1(answerId, newColor)
-    {
+      function question1(answerId, newColor)
+      {
         // Remember answer and/or clean previous
-        if (tmpButton == undefined) {  // Logic around chaos and emptiness. Just like my life.
-            tmpButton = answerId;
+        if (tmpButton == undefined) {
+          tmpButton = answerId;
         }
         else {
-            document.getElementById(tmpButton).style.backgroundColor = defaultButtonColor;
-            tmpButton = answerId;
+          document.getElementById(tmpButton).style.backgroundColor = defaultButtonColor;
+          tmpButton = answerId;
         }
 
         // Change color of button
@@ -38,33 +34,31 @@ Write a webpage that lets users answer trivia questions.
         // Print result
         var output = (answerId == first_correct_answer) ? "Correct!" : "Incorrect";
         document.getElementById('result1').innerHTML = output;
-    }
+      }
 
-    function question2()
-    {
-        // Get form value
-        var line = document.getElementById('answer2form').value;
+      function question2()
+      {
+          // Get form value
+          var line = document.getElementById('answer2form').value;
 
-        // Found pattern
-        var result = line.search(second_correct_answer);
+          // Found pattern
+          var result = line.search(second_correct_answer);
 
-        // Print result
-        var output = (result >= 0) ? "Correct!" : "Incorrect";
-        document.getElementById('result2').innerHTML = output;
-    }
-</script>
+          // Print result
+          var output = (result >= 0) ? "Correct!" : "Incorrect";
+          document.getElementById('result2').innerHTML = output;
+      }
+    </script>
 
-</head>
+  </head>
 
-<body>
+  <body>
+    <div class='jumbotron'>
+      <h1>Trivia!</h1>
+    </div>
 
-<div class='jumbotron'>
-    <h1>Trivia!</h1>
-</div>
-
-<div class='container'>
-
-    <div class='section'>
+    <div class='container'>
+      <div class='section'>
         <h2>Part 1: Multiple Choice </h2>
         <hr>
 
@@ -89,9 +83,9 @@ Write a webpage that lets users answer trivia questions.
 
         <p id='result1'></p>
 
-    </div>
+      </div>
 
-    <div class='section'>
+      <div class='section'>
         <h2>Part 2: Free Response</h2>
         <hr>
 
@@ -111,16 +105,13 @@ Write a webpage that lets users answer trivia questions.
         <h3>This is...</h3>
 
         <form onsubmit='question2(); return false;'>
-            <input type='text' id='answer2form' autocomplete='off' placeholder="...what?">
-            <input type='submit' value="Check Answer">
+          <input type='text' id='answer2form' autocomplete='off' placeholder="...what?">
+          <input type='submit' value="Check Answer">
         </form>
 
         <p id='result2'></p>
 
+      </div>
     </div>
-
-</div>
-
-</body>
-
+  </body>
 </html>

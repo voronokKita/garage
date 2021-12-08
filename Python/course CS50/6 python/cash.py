@@ -1,5 +1,5 @@
 #! python3
-""" CS50 PSet 6: Cash
+""" fall 2020 CS50 PSet 6: Cash
     Calculates the minimum number of coins required to give a user change. """
 
 answer = 0.0

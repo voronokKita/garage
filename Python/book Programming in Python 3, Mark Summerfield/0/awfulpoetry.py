@@ -1,7 +1,8 @@
 #! python3
-""" Print awful poems. Argument == num of lines integer. """
+""" summer 2020 Print awful poems. Argument == num of lines integer. """
 import sys
 import random
+
 
 articles = ['the', 'a', 'her', 'his', 'another']
 nouns = ['cat', 'dog', 'man', 'woman', 'boy', 'girl']

@@ -1,4 +1,4 @@
-/*  CS50 PSet 3: Runoff
+/*  fall 2020 CS50 PSet 3: Runoff
  *
  *  Runs a runoff election.
  *  May assume that no two candidates will have the same name.
@@ -161,7 +161,6 @@ void tabulate(void)
             }
         }
     }
-    return;
 }
 
 bool print_winner(void)
@@ -183,7 +182,7 @@ bool print_winner(void)
     // Is it more than 50%?
     if (score > voter_count / 2)
     {
-        // Is it strongest?
+        // Is it the strongest one?
         for (int cnd = 0; cnd < candidate_count; cnd++)
         {
             if (cnd != pretender and !candidates[cnd].eliminated and candidates[cnd].votes == score)
@@ -242,6 +241,4 @@ void eliminate(int min)
             candidates[cnd].eliminated = true;
         }
     }
-
-    return;
 }

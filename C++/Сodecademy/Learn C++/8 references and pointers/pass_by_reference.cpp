@@ -1,3 +1,4 @@
+// code examples
 #include <iostream>
 
 int triple(int i) {

@@ -1,4 +1,4 @@
-/*  CS50 PSet1: Cash
+/*  fall 2020 CS50 PSet1: Cash
  *
  *  Ask the user for the change owed,
  *  count minimum number of coins needed to pay.

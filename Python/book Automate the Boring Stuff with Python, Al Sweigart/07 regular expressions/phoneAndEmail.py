@@ -1,6 +1,7 @@
 #! python3
-""" My implementation of phones and emails search script;
-    search for re in clipboard."""
+""" spring 2021
+My implementation of phones and emails search script;
+search for re in clipboard. """
 import re
 import sys
 import pyperclip

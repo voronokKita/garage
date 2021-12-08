@@ -1,7 +1,7 @@
-/*  CS50 PSet 4: Filter helpers more
+/*  fall 2020 CS50 PSet 4: Filter helpers more
  *
  *  Applies filters to BMPs:
- *  Grayscale, Reflect, Blur and Edges with Sobel–Feldman operator.
+ *  Grayscale, Reflect, Blur and Edges with the Sobel–Feldman operator.
  */
 #include <math.h>
 #include <iso646.h>
@@ -10,7 +10,7 @@
 
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
-    /* Convert image to grayscale. */
+    /* Convert an image to grayscale. */
     
     // Find average RGB:
     int x, y, average;
@@ -28,18 +28,17 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             image[y][x].rgbtBlue = average;
         }
     }
-    return;
 }
 
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    /* Reflect image horizontally. */
+    /* Reflect an image horizontally. */
     
     int x, y, opposite;
     int tmp_R, tmp_G, tmp_B;
     const int half = width / 2;
     
-    // Array reverse:    
+    // Array reverse:
     for (y = 0; y < height; y++)
     {
         for (x = 0; x < half; x++)
@@ -59,20 +58,19 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             image[y][opposite].rgbtBlue = tmp_B;
         }
     }
-    return;
 }
 
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    /* Blur image with box blur. */
+    /* Blur an image with the box blur. */
     
-    // Copy of image
+    // Copy of the image
     RGBTRIPLE blur_image[height][width];
     
     int x, y, k, j, shift_y, shift_x, divisor;
     int average_red, average_green, average_blue;
 
-    // Fill blurred copy of image:    
+    // Fill blurred copy of the image:
     for (y = 0; y < height; y++)
     {
         for (x = 0; x < width; x++)
@@ -87,18 +85,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             for (k = -1; k <= 1; k++)
             {
                 if (y + k < 0 or y + k >= height)
-                {
-                    // out of border
                     continue;
-                }
 
                 for (j = -1; j <= 1; j++)
                 {
                     if (x + j < 0 or x + j >= width)
-                    {
-                        // out of border
                         continue;
-                    }
 
                     // Set indexes
                     shift_y = y + k;
@@ -128,18 +120,16 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[y][x].rgbtBlue = blur_image[y][x].rgbtBlue;
         }
     }
-
-    return;
 }
 
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
-    /* Detect edges with Sobel–Feldman operator. */
+    /* Detect edges with the Sobel–Feldman operator. */
 
     const int Gx[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
     const int Gy[3][3] = {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
 
-    // Copy of image
+    // Copy of the image
     RGBTRIPLE image_copy[height][width];
 
     int x, y, k, j, s_y, s_x;
@@ -168,18 +158,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             for (k = -1; k <= 1; k++)
             {
                 if (y + k < 0 or y + k >= height)
-                {
-                    // out of border
                     continue;
-                }
 
                 for (j = -1; j <= 1; j++)
                 {
                     if (x + j < 0 or x + j >= width)
-                    {
-                        // out of border
                         continue;
-                    }
 
                     // Set indexes
                     shift_y = y + k;
@@ -210,7 +194,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
-    // Insert copy into original:
+    // Insert the copy into the original:
     for (y = 0; y < height; y++)
     {
         for (x = 0; x < width; x++)
@@ -220,6 +204,4 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             image[y][x].rgbtBlue = image_copy[y][x].rgbtBlue;
         }
     }
-
-    return;
 }

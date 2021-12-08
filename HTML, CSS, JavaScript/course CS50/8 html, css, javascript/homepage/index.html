@@ -1,68 +1,56 @@
 <!DOCTYPE html>
-
 <!--
-CS50 PSet 8: Homepage
+fall 2020 CS50 PSet 8: Homepage
 Build a simple homepage using HTML, CSS, and JavaScript.
 -->
-
 <html lang='en'>
+  <head>
+    <title>My Webpage</title>
 
-<head>
+    <link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity='sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx' crossorigin='anonymous'></script>
 
-<title>My Webpage</title>
+    <link rel='stylesheet' href="styles.css">
+  </head>
 
-<link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity='sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx' crossorigin='anonymous'></script>
+  <style>
+    body {background-color: #002266;}
+    h1, p {color: #ccffff;}
+  </style>
 
-<link rel='stylesheet' href="styles.css">
+  <body>
+    <div class='content'>
 
-</head>
+      <img id='lain' src="images/iwakura.jpg" alt="iwakura.jpg" style='width:550px;height:309px;'>
 
-<style>
-    body
-    {
-        background-color: #002266;
-    }
-    h1, p
-    {
-        color: #ccffff;
-    }
-</style>
+      <h1>My First Site</h1>
+      <p title="Hello!">
+        Hi! I am first page of Harvard CS50 Problem Set 8 task, name "Homepage".<br>
+        My goal is to teach basics of the how to write on HTML, CSS and JavaScript.<br>
+        Use the nav panel to see the other three pages.
+      </p>
 
-<body>
+      <table id='nav/index'>
+        <tr>
+          <td><a href='index.html'>Main</a></td>
+          <td><a href='cats.html'>Cats</a></td>
+          <td><a href='video.html'>Video</a></td>
+          <td><a href='hello.html'>Hello</a></td>
+        </tr>
+      </table>
 
-<div class='content'>
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width='16' height='16' fill='currentColor' class='bi bi-terminal' viewBox='0 0 16 16'>
+          <path d='M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z'/>
+          <path d='M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z'/>
+        </svg><br>
+        Thanks goto <a href="https://www.w3schools.com/">w3schools.com</a> for their tutorials.<br>
+        Pictures: <a href="https://www.pixiv.net/en/users/1056186">pixiv link</a>
+      </p>
 
-<img id='lain' src="images/iwakura.jpg" alt="iwakura.jpg" style='width:550px;height:309px;'>
-
-<h1>My First Site</h1>
-<p title="Hello!">
-Hi! I am first page of Harvard CS50 Problem Set 8 task, name "Homepage".<br>
-My goal is to teach basics of the how to write on HTML, CSS and JavaScript.<br>
-Use the nav panel to see the other three pages.
-</p>
-
-<table id='nav/index'>
-    <tr>
-    <td><a href='index.html'>Main</a></td>
-    <td><a href='cats.html'>Cats</a></td>
-    <td><a href='video.html'>Video</a></td>
-    <td><a href='hello.html'>Hello</a></td>
-    </tr>
-</table>
-
-<p>
-<svg xmlns="http://www.w3.org/2000/svg" width='16' height='16' fill='currentColor' class='bi bi-terminal' viewBox='0 0 16 16'>
-<path d='M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z'/>
-<path d='M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z'/>
-</svg><br>
-Thanks goto <a href="https://www.w3schools.com/">w3schools.com</a> for their tutorials.<br>
-Pictures: <a href="https://www.pixiv.net/en/users/1056186">pixiv link</a>
-</p>
-
-</div>
-
-</body>
-
+    </div>
+  </body>
 </html>

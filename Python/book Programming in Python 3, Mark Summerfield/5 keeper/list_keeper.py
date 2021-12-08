@@ -1,5 +1,5 @@
 #! python3
-"""
+""" summer 2020
 Scan directory for .list files;
 Allow user to create new files;
 Allow user to add and dell lines from list files;

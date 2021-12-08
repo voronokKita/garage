@@ -1,8 +1,7 @@
-/*  CS50 PSet 4: Recover
+/*  fall 2020 CS50 PSet 4: Recover
  *
  *  Recovers 50 JPEGs from a forensic image of memory card.
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -22,7 +21,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Open memory card;
+    // Open a memory card;
     FILE *card = fopen(argv[1], "r");
     if (card == NULL)
     {
@@ -55,22 +54,16 @@ int main(int argc, char *argv[])
 
         // Break if EOF.
         if (readed_bytes <= 0)
-        {
             break;
-        }
 
         // If it's a JPEG header;
         if (buffer[0] == 0xff and buffer[1] == 0xd8 and buffer[2] == 0xff and (buffer[3] & 0xf0) == 0xe0)
         {
             // If previous bytes was another JPEG;
             if (jpeg_found)
-            {
                 fclose(picture);
-            }
             else
-            {
                 jpeg_found = true;
-            }
 
             // Generate name for JPEG;
             sprintf(filename, "%03i.jpg", filenum);

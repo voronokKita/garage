@@ -1,6 +1,6 @@
 #! python3
-""" My implementation of weather request;
-    Prints the current weather for my location. """
+""" spring 2021
+Prints the current weather for my location. """
 import sys
 import json
 import pathlib

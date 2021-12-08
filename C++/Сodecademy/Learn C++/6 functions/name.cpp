@@ -1,3 +1,4 @@
+// code examples
 #include <iostream>
 
 void name_x_times(std::string name, int x) {

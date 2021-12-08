@@ -1,6 +1,6 @@
 #! python3
-""" My implementation of multiclipboard;
-    saves and loads pieces of text from/to the clipboard. """
+""" spring 2021
+Saves and loads pieces of text from/to the clipboard. """
 import sys
 import shelve
 import pyperclip

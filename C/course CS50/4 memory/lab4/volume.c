@@ -1,9 +1,8 @@
-/*  CS50 Lab 4: Volume
+/*  fall 2020 CS50 Lab 4: Volume
  *
  *  Modifies the volume of an audio file using number-factor;
  *  Gets 3 command arguments: input audio file, name of output file, and number-factor.
  */
-
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -93,14 +92,10 @@ int main(int argc, char *argv[])
 bool copy_header(FILE *input, FILE *output, uint8_t *header)
 {
     if (fread(header, sizeof(uint8_t), HEADER_SIZE, input) == 0)
-    {
         return false;
-    }
 
     if (fwrite(header, sizeof(uint8_t), HEADER_SIZE, output) == 0)
-    {
         return false;
-    }
 
     return true;
 }
@@ -114,9 +109,7 @@ bool read_write_buffer(FILE *input, FILE *output, float factor)
         buffer *= factor;
 
         if (fwrite(&buffer, sizeof(int16_t), 1, output) == 0)
-        {
             return false;
-        }
     }
 
     return true;

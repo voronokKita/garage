@@ -1,4 +1,6 @@
 <?php
+/* code examples */
+
 require 'vendor/autoload.php';
 # This logic handles connecting to the database, where we store our todo status
 $pdo = new \PDO("sqlite:" . "db/sqlite.db");

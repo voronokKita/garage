@@ -1,6 +1,7 @@
 #! python3
-""" Read files from forenames.txt and surnames.txt,
-    randomly combines and print LIMIT. v3"""
+""" summer 2020
+Read files from forenames.txt and surnames.txt,
+randomly combines and print LIMIT. """
 import sys
 import random
 

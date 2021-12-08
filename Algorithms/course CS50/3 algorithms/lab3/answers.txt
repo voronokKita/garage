@@ -1,4 +1,4 @@
-CS50 Lab 2: Sort
+fall 2020 CS50 Lab 2: Sort
 Analyze three sorting programs to determine which algorithms they use.
 
 sort1 uses: Bubble sort

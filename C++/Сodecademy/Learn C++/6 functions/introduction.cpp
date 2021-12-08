@@ -1,3 +1,4 @@
+// code examples
 #include <iostream>
 
 void introduction(std::string first_name, std::string last_name) {

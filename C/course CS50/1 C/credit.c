@@ -1,4 +1,4 @@
-/*  CS50 PSet1: Credit
+/*  fall 2020 CS50 PSet1: Credit
  *
  *  Validate some credit cards numbers of
  *  American Express, Master Card and Visa.
@@ -8,14 +8,14 @@
 #include <cs50.h>
 #include <iso646.h>
 
-// Firsts numbers of cards brands, 0 is the end of list:
+// The firsts numbers of the cards brands, 0 is the end of list:
 const int AMEX_HEADERS[] = {34, 37, 0};
 const int MACA_HEADERS[] = {51, 52, 53, 54, 55, 22, 0};
 const int VISA_HEADERS[] = {4, 0};
 
 bool in_list(int num, const int arr[])
 {
-    /* Check is the number in lists of headers? */
+    /* Is a number in the lists of headers? */
 
     int i;
     for (i = 0; arr[i] != num and arr[i] != 0; i++);
@@ -39,14 +39,14 @@ int main(void)
     int brand = -1;
     brand = validation(number);
 
-    // Run Luhn's test if card is probably valid;
+    // Run the Luhn's test if a card is probably valid;
     bool luhn_result = false;
     if (brand > 0)
     {
         luhn_result = luhn(number);
     }
 
-    // Output results:
+    // Output the results:
     if (brand <= 0 or luhn_result != true)
     {
         printf("INVALID\n");
@@ -158,7 +158,7 @@ bool luhn(long long number)
         }
     }
 
-    // Apply formula and return result.
+    // Apply the formula and return result.
     bool result = ((firsts + seconds) % 10 == 0) ? true : false;
     return result;
 }

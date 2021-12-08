@@ -1,3 +1,4 @@
+// code examples
 #include <iostream>
 #include <chrono>
 #include "night.hpp"

@@ -1,5 +1,5 @@
 """
-CS50 PSet 9: C$50 Finance
+fall 2021 CS50 PSet 9: C$50 Finance
 A website where users can “buy” and “sell” stocks.
 """
 from flask import Flask, flash, redirect, render_template, request, session, url_for
@@ -14,14 +14,9 @@ from datetime import datetime, timezone
 
 from helpers import apology, login_required, lookup, usd
 
-# Configure application
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-
-# Ensure templates are auto-reloaded
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-
-# Custom filter
 app.jinja_env.filters['usd'] = usd
 
 # Configure session to use filesystem (instead of signed cookies)
@@ -30,7 +25,6 @@ app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 
-# Configure CS50 Library to use SQLite database
 db = SQL('sqlite:///finance.db')
 
 # db tables:
@@ -115,7 +109,6 @@ def index():
     cash = cash[0]['cash']
     wealth += cash
 
-    # Output to user.
     return render_template('index.html', user_holdings=output, cash=cash, wealth=wealth), 200
 
 
@@ -133,7 +126,6 @@ def quote():
     if not quote:
         return apology("must provide correct company symbol", 400)
 
-    # Output to user.
     return render_template('quoted.html', company=quote['name'], symbol=quote['symbol'], price=quote['price']), 200
 
 

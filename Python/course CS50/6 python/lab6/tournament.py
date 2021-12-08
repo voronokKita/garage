@@ -1,5 +1,5 @@
 """
-CS50 Lab 6: Tournament
+fall 2020 CS50 Lab 6: Tournament
 Simulate a sports tournament FIFA World Cup.
 """
 import csv
@@ -7,13 +7,12 @@ import sys
 import random
 from collections import defaultdict
 
+
 # Number of simluations to run
 N = 1000
 
 
 def main():
-
-    # Ensure correct usage;
     if len(sys.argv) != 2:
         sys.exit(f"Usage: python {sys.argv[0]} FILENAME.csv")
 

@@ -1,8 +1,7 @@
-/*  CS50 PSet 5: Speller
+/*  fall 2020 CS50 PSet 5: Speller
  *
  *  Implements a dictionary's functionality.
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -20,10 +19,10 @@ typedef struct node
 }
 node;
 
-// Pointer to future hash_table
+// Pointer to the future hash_table
 node *hash_table = NULL;
 
-// Number of "buckets" in hash table
+// Number of "buckets" in the hash table
 unsigned int BUCKETS = 1;
 
 // Lazy way: max number of words in one "bucket"
@@ -44,25 +43,21 @@ bool load(const char *dictionary)
      */
     FILE *dict = fopen(dictionary, "r");
     if (dict == NULL)
-    {
         return false;
-    }
 
-    // Pre-process dictionary in order to count words;
+    // Count words in the dictionary;
     for (char c = getc(dict); c != EOF; c = getc(dict))
     {
         if (c == '\n')
-        {
             WORDS_FOUND++;
-        }
     }
     rewind(dict);
 
-    // Count number of "buckets" needed in hash table;
+    // Count number of "buckets" needed in the hash table;
     BUCKETS = WORDS_FOUND / PACK;
     BUCKETS = BUCKETS > 0 ? BUCKETS : 1;
 
-    // Allocate memory for dictionary;
+    // Allocate memory for the dictionary;
     hash_table = malloc(BUCKETS * sizeof(node));
     if (hash_table == NULL)
     {
@@ -85,7 +80,7 @@ bool load(const char *dictionary)
     // Read strings from a file:
     while (fscanf(dict, "%s", dict_word) != EOF)
     {
-        // Hash word to obtain a hash value;
+        // Hash a word to obtain a hash value;
         h = hash(dict_word);
 
         // Look at linked list with this hash;
@@ -102,13 +97,13 @@ bool load(const char *dictionary)
                 return false;
             }
 
-            // Insert new node into linked list;
+            // Insert a new node into the linked list;
             list = &hash_table[h];
             n->next = list->next;
             list->next = n;
         }
 
-        // Insert word into node.
+        // Insert the word into the node.
         strcpy(n->word, dict_word);
     }
 
@@ -119,7 +114,7 @@ bool load(const char *dictionary)
 
 unsigned int hash(const char *word)
 {
-    /*  Hashes word to a number.
+    /*  Hashes a word to a number.
      *  Thanks for the algorithm goto:
      *  https://e-maxx.ru/algo/string_hashes
      */
@@ -128,9 +123,7 @@ unsigned int hash(const char *word)
     strcpy(s, word);
     
     for (int i = 0; i < len; i++)
-    {
         s[i] = tolower(s[i]);
-    }
 
     const int P = 31;
     long long h = 0, p_pow = 1;
@@ -145,30 +138,28 @@ unsigned int hash(const char *word)
     // hash 2:
     h %= BUCKETS;
     if (h < 0)
-    {
         h *= -1;
-    }
 
     return h;
 }
 
 unsigned int size(void)
 {
-    /* Returns number of words in dictionary if loaded, else 0 if not yet loaded. */
+    /* Returns number of words in dictionary if loaded, else 0. */
     return WORDS_FOUND;
 }
 
 bool check(const char *word)
 {
-    /*  Returns true if word is in dictionary, else false.
+    /*  Returns true if a word is in the dictionary, else false.
      *
      *  May assume that check will only be passed words that contain (uppercase or lowercase)
      *  alphabetical characters and possibly apostrophes.
      */
-    // Get hash from word;
+    // Get a hash from word;
     unsigned int h = hash(word);
 
-    // Make the cursor and point to table with hash;
+    // Make the cursor and point to a table with the hash;
     node *cursor = &hash_table[h];
 
     // Check words in a linked list:
@@ -208,7 +199,7 @@ bool unload(void)
         }
     }
 
-    // Free dictionary hash table;
+    // Free the dictionary hash table;
     free(hash_table);
 
     // Unload successful.

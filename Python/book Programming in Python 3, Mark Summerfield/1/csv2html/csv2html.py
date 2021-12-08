@@ -1,9 +1,10 @@
 #! python3
-""" Read csv and output html table. """
+""" summer 2020 Read csv and output html table. """
 import os
 import sys
 import stat
 import optparse
+
 
 VERSION = "4"
 USAGE = f"USAGE: {sys.argv[0]} (--maxwidth[int] --format[int]) < input.csv > output.html"

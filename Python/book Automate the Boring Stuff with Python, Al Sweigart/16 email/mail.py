@@ -1,5 +1,5 @@
 #! python3
-""" Mailing from terminal. """
+""" spring 2021 Mailing from a terminal. """
 import sys
 import smtplib
 

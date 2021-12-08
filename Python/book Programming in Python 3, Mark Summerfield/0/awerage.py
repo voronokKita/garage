@@ -1,5 +1,5 @@
 #! python3
-""" Average v2 with median. """
+""" summer 2020 Average, with median. """
 import sys
 numbers = []
 count = 0

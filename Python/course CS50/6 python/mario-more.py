@@ -1,5 +1,5 @@
 #! python3
-""" CS50 PSet 6: Mario more
+""" fall 2020 CS50 PSet 6: Mario more
     Print two ladders of #hashes. """
 
 height = 0

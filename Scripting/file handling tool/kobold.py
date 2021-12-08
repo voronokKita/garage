@@ -15,7 +15,7 @@ The script points me to files with incorrect names,
 brings the names to the standard and fixes the counters,
 in cases where they are messed up or the files have been deleted. 
 
-v2 all names to snake_case, ensure that all files have extensions
+v2 2021.08 all names to snake_case, ensure that all files have extensions
 v3 make exel spreadsheet of all files
 """
 import re

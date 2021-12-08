@@ -1,9 +1,8 @@
-/*  CS50 PSet 2: Substitution
+/*  fall 2020 CS50 PSet 2: Substitution
  *
  *  Uses a str-argument as an encryption key;
  *  asks the user for some text and then print encrypted result of that text.
  */
-
 #include <stdio.h>
 #include <cs50.h>
 #include <ctype.h>

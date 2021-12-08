@@ -1,65 +1,55 @@
-body
-{
-    font-family: Georgia;
+body {
+  font-family: Georgia;
 }
-h1
-{
-    font-size: 20px;
+h1 {
+  font-size: 20px;
 }
 
-.content
-{
-    position: absolute;
-    top: 50px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 600px;
+.content {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
 }
 
 /* Navigator */
-table
-{
-    text-align: center;
+table {
+  text-align: center;
 }
-th, td
-{
-    border: 1px;
-    padding: 2px;
+th, td {
+  border: 1px;
+  padding: 2px;
 }
 
-#lain
-{
-    border: 2px solid #555;
-    border-radius: 4px;
+#lain {
+  border: 2px solid #555;
+  border-radius: 4px;
 }
-#cat
-{
-    border: 2px solid #600080;
-    border-radius: 4px;
+#cat {
+  border: 2px solid #600080;
+  border-radius: 4px;
 }
 
 /* hello.html */
-.hello
-{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #cc5200;
-    text-shadow:
-    -1px 1px 0 #999,
-    1px 1px 0 #999,
-    1px -1px 0 #999,
-    -1px -1px 0 #999;
+.hello {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #cc5200;
+  text-shadow:
+  -1px 1px 0 #999,
+  1px 1px 0 #999,
+  1px -1px 0 #999,
+  -1px -1px 0 #999;
 }
-.text
-{
-    font-size: 20px;
+.text {
+  font-size: 20px;
 }
-.this
-{
-    font-size: 26px;
-    font-weight: 900;
+.this {
+  font-size: 26px;
+  font-weight: 900;
 }

@@ -1,6 +1,6 @@
-/*  CS50 PSet 7: Movies
-    Write SQLite3 queries to answer questions about a database of movies from IMDb. */
-
+/*  fall 2020 CS50 PSet 7: Movies
+ *  Write SQLite3 queries to answer questions about a database of movies from IMDb.
+ */
 
 /* Query 1: lists the titles of all movies released in 2008. */
 SELECT title FROM movies WHERE year = 2008;

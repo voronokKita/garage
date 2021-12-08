@@ -1,4 +1,4 @@
-/*  CS50 PSet1: Mario less
+/*  fall 2020 CS50 PSet1: Mario less
  *
  *  Build stairs of #hashes.
  */

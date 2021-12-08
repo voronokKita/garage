@@ -1,11 +1,12 @@
 #! python3
 """
-CS50 PSet 7: Houses roster
+fall 2020 CS50 PSet 7: Houses roster
 Take name of House as argument;
 Prints class roster for a given House in alphabetical order.
 """
 import cs50
 import sys
+
 
 if len(sys.argv) != 2 or len(sys.argv[1]) > 10:
     print(f"USAGE: python {sys.argv[0]} %HouseName%")

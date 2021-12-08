@@ -1,6 +1,5 @@
 #include <string>
 
-
 class Song {
     std::string title;
     std::string artist;
