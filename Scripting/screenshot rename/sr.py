@@ -1,36 +1,30 @@
 #! python3
 """
-Rename screenshots and other pictures in script folder.
-0) ask parameters
-1) look for files in ./
-2) rename
+Rename screenshots and other pictures in a script folder.
 
 v1 fall 2020
+refactor in winter 2022
 """
 import sys
 import time
 import pathlib
 import collections
 
-VERSION = '3'
-MODES = ['none', 'vlc', 'numbers']
+VERSION = '2'
+MODES = ['modified', 'name']
 PICTURES_FORMATS = (".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tga")
-Files = collections.namedtuple("File", "path modified created")
+Files = collections.namedtuple("File", "path sort_key")
 
 
 def main():
-    # User options;
     rename, number, mode = parameters()
 
-    # List folder and sort;
     files = []
     scan_directory(files, mode)
 
-    # Process files (print to user);
     print("Process:")
     process(rename, number, files)
-    
-    # Done.
+
     print("Process successful.")
     sys.exit(0)
 
@@ -39,24 +33,25 @@ def parameters():
     """ Get filenames and start number """
     print(f"Screenshots and pictures rename v{VERSION}")
 
-    filename = ""
-    while not filename:
-        filename = input("\twhat will be the name of files? ")
+    new_filename = None
+    while not new_filename:
+        new_filename = input("\twhat will be the name of files? ")
 
-    number = None
-    while not number:
+    number = -1
+    while number < 0:
         try:
             number = int(input("\tcount from where? "))
         except ValueError:
             continue
 
+    mode = None
     m = ", ".join(MODES)
     while True:
         mode = input(f"\tmode[{m}]? ").lower()
         if mode and mode in MODES:
             break
 
-    return filename, number, mode
+    return new_filename, number, mode
 
 
 def scan_directory(files, mode):
@@ -67,27 +62,22 @@ def scan_directory(files, mode):
         if not item.is_file() or not item.name.endswith(PICTURES_FORMATS):
             continue
 
-        file_modified = None
-        file_created = None
+        sort_key = None
 
-        if mode == 'none':
+        if mode == 'modified':
             t = time.localtime(
                 item.stat().st_mtime
             )
-            file_modified = time.strftime('%Y-%m-%d %H:%M:%S', t)
-        elif mode == 'vlc' or mode == 'numbers':
-            # LIKE vlcsnap-2021-03-15-21h55m55s651.png OR scr001
-            filename = item.stem
-            file_created = filename
+            sort_key = time.strftime('%Y-%m-%d %H:%M:%S', t)
 
-        file = Files(item, file_modified, file_created)
+        elif mode == 'name':
+            # LIKE vlcsnap-2021-03-15-21h55m55s651.png OR scr001
+            sort_key = item.stem
+
+        file = Files(item, sort_key)
         files.append(file)
 
-    # Sort:
-    if mode == 'vlc' or mode == 'numbers':
-        files.sort(key=lambda f: f[2])
-    else:
-        files.sort(key=lambda f: f[1])
+    files.sort(key=lambda f: f[1])
 
 
 def process(rename, number, files):
