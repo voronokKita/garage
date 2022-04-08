@@ -8,3 +8,7 @@
 #### Forum on Flask
 
 > https://github.com/voronokKita/howtoforum
+
+#### Automatic installation of mods in some Paradox Interactive games
+
+> https://github.com/voronokKita/modstothepeople
