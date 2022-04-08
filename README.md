@@ -1,6 +1,10 @@
-# garage
+## garage
 ### My code, courses, examples and reminders
 
-### My homepage on GitHub Pages:
-> https://purl.archive.org/kita<br>
+#### Personal homepage on GitHub Pages
+
 > https://github.com/voronokKita/voronokKita.github.io
+
+#### Forum on Flask
+
+> https://github.com/voronokKita/howtoforum
