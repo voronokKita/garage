@@ -5,14 +5,14 @@
 
 > https://github.com/voronokKita/voronokKita.github.io
 
-#### Forum on Flask
+#### Telegram bot that can keep track of web feeds
 
-> https://github.com/voronokKita/howtoforum
+> https://github.com/voronokKita/kaban-chan
 
 #### Automatic installation of mods in some Paradox Interactive games
 
 > https://github.com/voronokKita/modstothepeople
 
-#### Telegram bot that can keep track of web feeds
+#### Forum on Flask
 
-> https://github.com/voronokKita/kaban-chan
+> https://github.com/voronokKita/howtoforum
