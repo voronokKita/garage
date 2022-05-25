@@ -1,5 +1,7 @@
-## garage
-### My code, courses, examples and reminders
+# My code, courses, examples and reminders
+<br>
+
+## My other stuff
 
 #### Personal homepage on GitHub Pages
 
