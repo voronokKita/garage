@@ -1,5 +1,4 @@
 # My code, courses, examples and reminders
-<br>
 
 ## My other stuff
 
