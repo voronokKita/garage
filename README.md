@@ -1,5 +1,7 @@
 # My code, courses, examples and reminders
 
+<img src="factorio-b.jpg" width="700" alt="factorio-mess">
+
 ## My other stuff
 
 #### Personal homepage on GitHub Pages
