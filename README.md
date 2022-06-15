@@ -1,10 +1,8 @@
 # My code, courses, examples and reminders
 
-[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
-[![Russian Warship Go Fuck Yourself](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/RussianWarship.svg)](https://stand-with-ukraine.pp.ua)
-
 <img src="factorio-b.jpg" width="700" alt="factorio-mess">
 
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
 ## My other stuff
 
@@ -14,8 +12,7 @@
 
 #### Telegram bot that can keep track of web feeds
 
-pyTelegramBotAPI + SQLite + SQLAlchemy
-
+> pyTelegramBotAPI + SQLite + SQLAlchemy <br>
 > https://github.com/voronokKita/kaban-chan
 
 #### Automatic installation of mods in some Paradox Interactive games
@@ -24,6 +21,5 @@ pyTelegramBotAPI + SQLite + SQLAlchemy
 
 #### Forum on Flask
 
-Flask + Flask-SQLAlchemy + SQLite
-
+> Flask + Flask-SQLAlchemy + SQLite <br>
 > https://github.com/voronokKita/howtoforum
