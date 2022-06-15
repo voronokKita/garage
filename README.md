@@ -1,5 +1,8 @@
 # My code, courses, examples and reminders
 
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
+[![Russian Warship Go Fuck Yourself](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/RussianWarship.svg)](https://stand-with-ukraine.pp.ua)
+
 ## My other stuff
 
 #### Personal homepage on GitHub Pages
@@ -7,6 +10,8 @@
 > https://github.com/voronokKita/voronokKita.github.io
 
 #### Telegram bot that can keep track of web feeds
+
+pyTelegramBotAPI + SQLite + SQLAlchemy
 
 > https://github.com/voronokKita/kaban-chan
 
@@ -16,8 +21,6 @@
 
 #### Forum on Flask
 
-> https://github.com/voronokKita/howtoforum
+Flask + Flask-SQLAlchemy + SQLite
 
-<br><br><br>
-[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
-[![Russian Warship Go Fuck Yourself](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/RussianWarship.svg)](https://stand-with-ukraine.pp.ua)
+> https://github.com/voronokKita/howtoforum
