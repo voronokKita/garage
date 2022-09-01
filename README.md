@@ -10,6 +10,11 @@
 
 > https://github.com/voronokKita/voronokKita.github.io
 
+#### Project on Django with different apps
+
+> django + SQLite <br>
+> https://github.com/voronokKita/alpaca-chan
+
 #### Telegram bot that can keep track of web feeds
 
 > pyTelegramBotAPI + SQLite + SQLAlchemy <br>
