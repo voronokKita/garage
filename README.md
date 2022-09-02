@@ -2,7 +2,7 @@
 
 <img src="factorio-b.jpg" width="700" alt="factorio-mess">
 
-## My other stuff
+## My projects
 
 #### Personal homepage on GitHub Pages
 
